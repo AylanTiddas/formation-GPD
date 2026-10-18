@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation BPDG — SPA ABC MED | Groupe Hydrapharm</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        hydra: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            200: '#bae0fd',
+                            500: '#0077b6',
+                            600: '#005f99',
+                            700: '#004b7a',
+                            800: '#003559',
+                            900: '#002540',
+                        },
+                        pharma: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            500: '#00a878',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f4f8fb;
+            color: #0f172a;
+            overflow: hidden;
+        }
+        .slide-card {
+            display: none;
+            animation: slideFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .slide-card.active {
+            display: flex;
+        }
+        @keyframes slideFade {
+            from { opacity: 0; transform: translateY(8px) scale(0.996); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #005f99;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 20px 45px -15px rgba(0, 53, 89, 0.08), 0 4px 12px -2px rgba(0, 95, 153, 0.04);
+        }
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            border-color: #7dd3fc;
+            box-shadow: 0 8px 20px -4px rgba(0, 95, 153, 0.08);
+        }
+        .hydra-brand-card {
+            background: linear-gradient(135deg, #002540 0%, #004b7a 60%, #0077b6 100%) !important;
+            color: #ffffff !important;
+        }
+        .hydra-brand-card .brand-white { color: #ffffff !important; }
+        .hydra-brand-card .brand-sky { color: #7dd3fc !important; }
+        .hydra-brand-card .brand-emerald { color: #6ee7b7 !important; }
+        .hydra-brand-card .brand-muted { color: #cbd5e1 !important; }
+
+        @media print {
+            body { overflow: visible !important; background: #fff !important; color: #000 !important; }
+            #top-nav, #bottom-nav, #drawer-backdrop, #module-drawer, #speaker-modal { display: none !important; }
+            .slide-card {
+                display: flex !important;
+                page-break-after: always;
+                height: auto !important;
+                min-height: 95vh;
+                background: #ffffff !important;
+                margin-bottom: 20px;
+                border: 1px solid #cbd5e1;
+            }
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col select-none bg-[#f4f8fb] text-slate-900">
+
+    <!-- TOP BAR -->
+    <header id="top-nav" class="h-16 px-4 sm:px-6 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm flex items-center justify-between z-30 shrink-0">
+        <div class="flex items-center gap-3 sm:gap-4">
+            <button onclick="toggleDrawer()" class="p-2 rounded-xl bg-hydra-50 hover:bg-hydra-100 text-hydra-800 border border-hydra-200 transition flex items-center gap-2 shadow-xs" title="Sommaire des 13 Modules">
+                <i data-lucide="layout-grid" class="w-4 h-4 text-hydra-600"></i>
+                <span class="text-xs font-black uppercase tracking-wider hidden sm:inline text-hydra-900">13 Modules</span>
+            </button>
+
+            <div class="h-7 w-[1px] bg-slate-200 hidden sm:block"></div>
+
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-hydra-800 via-hydra-600 to-pharma-500 flex items-center justify-center shadow-xs font-black text-white text-xs tracking-tighter">
+                    ABC
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-extrabold text-sm tracking-tight text-hydra-900">SPA ABC MED</span>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-hydra-50 text-hydra-700 border border-hydra-200 hidden sm:inline-block">Groupe Hydrapharm</span>
+                    </div>
+                    <p class="text-[10.5px] text-slate-500">Par <strong class="text-pharma-700 font-semibold">Boussad Tamazirt</strong> — Responsable Qualité</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden xl:flex items-center gap-3 bg-slate-50 px-4 py-1.5 rounded-full border border-slate-200 shadow-xs">
+            <span id="current-block-badge" class="text-[11px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-pharma-50 text-pharma-700 border border-pharma-200">
+                Introduction
+            </span>
+            <span id="current-pacing-target" class="text-xs text-slate-600 font-medium flex items-center gap-1.5">
+                <i data-lucide="clock" class="w-3.5 h-3.5 text-hydra-600"></i>
+                Rythme 2h : <strong class="text-hydra-900">00:00 – 00:04</strong>
+            </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <!-- 2H Timer -->
+            <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-xl">
+                <div class="flex items-center gap-1.5">
+                    <span id="timer-dot" class="w-2 h-2 rounded-full bg-pharma-500"></span>
+                    <span id="timer-display" class="font-mono text-xs sm:text-sm font-bold text-hydra-900">02:00:00</span>
+                </div>
+                <button onclick="toggleTimer()" id="timer-btn" class="p-1 hover:bg-slate-200/80 rounded text-slate-600 hover:text-hydra-900 transition" title="Démarrer/Pause Chronomètre 2h">
+                    <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                </button>
+                <button onclick="resetTimer()" class="p-1 hover:bg-slate-200/80 rounded text-slate-400 hover:text-hydra-900 transition" title="Réinitialiser 2h">
+                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
+
+            <!-- Guide Formateur -->
+            <button onclick="toggleSpeakerNotes()" class="px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-bold flex items-center gap-1.5 transition shadow-xs" title="Notes & Timing Formateur (Touche N)">
+                <i data-lucide="mic" class="w-3.5 h-3.5 text-amber-700"></i>
+                <span class="hidden md:inline">Guide 2h</span>
+            </button>
+
+            <!-- Export / Print -->
+            <button onclick="window.print()" class="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition" title="Imprimer / Exporter en PDF">
+                <i data-lucide="printer" class="w-4 h-4"></i>
+            </button>
+
+            <!-- Fullscreen -->
+            <button onclick="toggleFullScreen()" class="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition" title="Plein Écran (Touche F)">
+                <i data-lucide="maximize" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="w-full h-1.5 bg-slate-200 shrink-0 relative overflow-hidden">
+        <div id="slide-progress" class="h-full bg-gradient-to-r from-hydra-800 via-hydra-500 to-pharma-500 transition-all duration-300" style="width: 4%;"></div>
+    </div>
+
+    <!-- MAIN VIEWPORT -->
+    <main class="flex-1 relative overflow-hidden flex items-center justify-center p-3 sm:p-5 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-sky-100/60 via-[#f4f8fb] to-emerald-50/40">
+        <div id="slide-container" class="w-full h-full max-w-7xl glass-panel rounded-3xl shadow-xl flex flex-col justify-between overflow-hidden">
+        </div>
+    </main>
+
+    <!-- BOTTOM BAR -->
+    <footer id="bottom-nav" class="h-14 px-4 sm:px-6 bg-white/95 backdrop-blur-md border-t border-slate-200 flex items-center justify-between z-30 shrink-0">
+        <div class="flex items-center gap-2">
+            <button onclick="prevSlide()" id="prev-btn" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-bold flex items-center gap-1.5 transition disabled:opacity-40">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Précédent
+            </button>
+            <button onclick="nextSlide()" id="next-btn" class="px-4 py-1.5 rounded-xl bg-hydra-600 hover:bg-hydra-700 text-white text-xs font-extrabold flex items-center gap-1.5 transition shadow-xs">
+                Suivant <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <span id="slide-counter" class="font-mono text-xs font-bold text-hydra-900 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Diapositive 1 / 25 (4%)</span>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-2 text-xs text-slate-600">
+            <span class="font-semibold text-slate-800">Boussad Tamazirt • RQ</span>
+            <span class="text-slate-300">|</span>
+            <span class="text-hydra-700 font-extrabold">SPA ABC MED (Groupe Hydrapharm)</span>
+        </div>
+    </footer>
+
+    <!-- DRAWER -->
+    <div id="drawer-backdrop" onclick="toggleDrawer()" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-40 hidden"></div>
+    <aside id="module-drawer" class="fixed top-0 left-0 h-full w-80 sm:w-96 bg-white border-r border-slate-200 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 sm:p-5 border-b border-slate-200 bg-hydra-50/70 flex items-center justify-between">
+            <div>
+                <h3 class="font-extrabold text-hydra-900 text-sm">Sommaire & Rythme (2h)</h3>
+                <p class="text-xs text-slate-500">Accès direct aux 25 diapositives — SPA ABC MED</p>
+            </div>
+            <button onclick="toggleDrawer()" class="p-1.5 rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-hydra-900">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+        <div id="drawer-list" class="flex-1 overflow-y-auto p-3 space-y-1.5 custom-scroll"></div>
+    </aside>
+
+    <!-- SPEAKER NOTES MODAL -->
+    <div id="speaker-modal" class="fixed bottom-16 right-6 w-96 max-w-[90vw] bg-white rounded-2xl p-4 shadow-2xl border-2 border-amber-300 z-40 hidden">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
+            <span class="text-xs font-black uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+                <i data-lucide="mic" class="w-3.5 h-3.5 text-amber-600"></i> Notes Formateur — Boussad Tamazirt
+            </span>
+            <button onclick="toggleSpeakerNotes()" class="text-slate-400 hover:text-slate-800"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <p id="speaker-pacing" class="text-xs font-mono font-bold text-hydra-700 mb-1.5"></p>
+        <div class="bg-amber-50/50 p-2.5 rounded-xl border border-amber-200">
+            <p id="speaker-notes-text" class="text-xs text-slate-700 leading-relaxed font-medium"></p>
+        </div>
+    </div>
+
+    <!-- MAIN SCRIPT -->
+    <script>
+        const SLIDES = [
+            { id: 1, module: "Introduction & Cadre", pacing: "00:00 – 00:04 (4 min)", title: "BONNES PRATIQUES DE DISTRIBUTION EN GROS & DE STOCKAGE", notes: "Accueil des participants chez SPA ABC MED (Groupe Hydrapharm). Présenter l'objectif de ces 2 heures." },
+            { id: 2, module: "Introduction Générale", pacing: "00:04 – 00:08 (4 min)", title: "Objectifs Pédagogiques & Architecture (Format 2 Heures)", notes: "Présenter les 4 compétences visées et le découpage chronométré des 13 modules." },
+            { id: 3, module: "Module 1 : Fondements & Enjeux", pacing: "00:08 – 00:13 (5 min)", title: "Notions sur le Médicament & Pourquoi les BPDG sont Vitales", notes: "Insister sur le fait que le médicament n'est pas une marchandise ordinaire. Rappeler les 3 catastrophes historiques." },
+            { id: 4, module: "Module 1 : Cadre Réglementaire Algérien", pacing: "00:13 – 00:18 (5 min)", title: "Le Cadre Réglementaire Algérien & Périmètre Officiel BPD / BPS", notes: "Présenter la pyramide réglementaire algérienne complète et le Guide ANPP 2026." },
+            { id: 5, module: "Module 2 : Cahier des Charges Grossiste", pacing: "00:18 – 00:26 (8 min)", title: "Obligations Générales du Grossiste Répartiteur & Déclarations MIP", notes: "Expliquer les 3 piliers : 2/3 nomenclature, 30 jours stock, 4 déclarations MIP." },
+            { id: 6, module: "Module 3 : Système de Management de la Qualité", pacing: "00:26 – 00:31 (5 min)", title: "Système de Management de la Qualité (SMQ) & 8 Garanties", notes: "Présenter le SMQ et les 8 garanties fondamentales ANPP." },
+            { id: 7, module: "Module 3 : Déviations, CAPA & ICH Q9", pacing: "00:31 – 00:36 (5 min)", title: "Gestion des Déviations, Processus CAPA & Risques (ICH Q9)", notes: "Cause racine Ishikawa 5M, 5 Pourquoi, boucle CAPA et criticité C = G x P x D." },
+            { id: 8, module: "Module 4 : Personnel & Responsabilités PDT", pacing: "00:36 – 00:41 (5 min)", title: "Organisation du Personnel & Missions du Pharmacien Directeur Technique (PDT)", notes: "Structure RH, règle anti-cumul Art. 15, pharmaciens assistants Art. 16 et 8 missions PDT." },
+            { id: 9, module: "Module 4 : Formation & Hygiène", pacing: "00:41 – 00:45 (4 min)", title: "Formation Continue, Habilitation & Hygiène / Sécurité en Entrepôt", notes: "Habilitation écrite Art. 17, 4 preuves documentaires, EPI et 6 interdictions." },
+            { id: 10, module: "Module 5 : Locaux & Zonage Réglementaire", pacing: "00:45 – 00:50 (5 min)", title: "Normes de Superficie Obligatoires & Zonage en Entrepôt", notes: "Superficies (≥ 500 m² dont ≥ 200 m² continu, ≥ 90 m² DM, ≥ 590 m² total) et 11 zones." },
+            { id: 11, module: "Module 5 : Environnement, Mapping & WMS", pacing: "00:50 – 00:55 (5 min)", title: "Environnement, Mapping Thermique 24/7 & Système Informatique", notes: "HR ≤ 60%, mapping 3D été/hiver 7 jours, alarmes 24/7, groupe électrogène, Audit Trail." },
+            { id: 12, module: "Module 6 : Bonnes Pratiques de Stockage & FEFO", pacing: "00:55 – 01:00 (5 min)", title: "Règles de Stockage, Règle d'Or FEFO & Code Couleur des Statuts", notes: "Zéro carton au sol, dégagement 30-50 cm, primauté absolue FEFO > FIFO, 4 statuts." },
+            { id: 13, module: "Module 6 : Chaîne du Froid & Excursions", pacing: "01:00 – 01:05 (5 min)", title: "La Chaîne du Froid : Plages Normalisées (Annexe 1) & Excursions", notes: "5 plages pharmacopée, < 15 min réception, protocole d'excursion en 4 étapes." },
+            { id: 14, module: "Module 7 : Documentation & Principes ALCOA+", pacing: "01:05 – 01:09 (4 min)", title: "Le Système Documentaire Pharmaceutique & Principes ALCOA+", notes: "Pyramide à 4 niveaux, cycle de vie PDT et principes ALCOA+ d'intégrité." },
+            { id: 15, module: "Module 7 : Correction & Archivage 5 Ans", pacing: "01:09 – 01:13 (4 min)", title: "Correction d'Erreur d'Écriture & Archivage Légal (5 Ans)", notes: "Zéro blanco, trait simple horizontal, visa et date, conservation ≥ 5 ans." },
+            { id: 16, module: "Module 8 : Opérations (Qualification & Réception)", pacing: "01:13 – 01:18 (5 min)", title: "Qualification Fournisseurs/Clients & Les 5 Étapes de Réception", notes: "Dossiers d'agrément et les 5 étapes de contrôle à réception." },
+            { id: 17, module: "Module 8 : Picking, Colisage & Expédition", pacing: "01:18 – 01:23 (5 min)", title: "Préparation (Picking), Colisage Sécurisé & Expédition contre Décharge", notes: "Vigilance LASA, double contrôle, colis inviolables et décharge légale." },
+            { id: 18, module: "Module 9 : Transport & Logistique Sécurisée", pacing: "01:23 – 01:30 (7 min)", title: "Transport sous Température Dirigée & Gestion des Urgences", notes: "LIFO, trajets nocturnes Grand Sud, relais froid, Décret 19-379 et protocole panne." },
+            { id: 19, module: "Module 10 : Réclamations, Retours & Rappels", pacing: "01:30 – 01:35 (5 min)", title: "Réclamations Clients, Retours (Chap. 8) & Rappels de Lots", notes: "5 conditions retours + 6 preuves froid, rappel < 1h et Mock recall annuel." },
+            { id: 20, module: "Module 10 : Produits Falsifiés & Destruction", pacing: "01:35 – 01:40 (5 min)", title: "Médicaments Falsifiés : Détection, Alerte & Destruction Légale", notes: "6 signes d'alerte, alerte MIP/ANPP et PV de destruction agréé avec inspecteurs." },
+            { id: 21, module: "Module 11 : Dispositifs Médicaux & Psychotropes", pacing: "01:40 – 01:47 (7 min)", title: "Dispositifs Médicaux (DM) & Gestion des Psychotropes / Stupéfiants", notes: "DM 90 m² ISO 13485 vs Psychotropes 2 ans d'exercice et dérogation Art. 6." },
+            { id: 22, module: "Module 12 : Sous-Traitance, Audits & Inspections", pacing: "01:47 – 01:52 (5 min)", title: "Activités Externalisées, Auto-Inspection & Inspections ANPP/MIP", notes: "Responsabilité non délégable, plan d'auto-inspection et sanctions Loi 18-11." },
+            { id: 23, module: "Module 13 : Atelier Cas Pratiques", pacing: "01:52 – 01:56 (4 min)", title: "Atelier Cas Pratiques : Vos Réflexes en Entrepôt", notes: "4 cas pratiques interactifs avec solutions réglementaires." },
+            { id: 24, module: "Module 13 : Synthèse Managériale", pacing: "01:56 – 01:58 (2 min)", title: "Les 10 Commandements d'Or des BPDG en Algérie", notes: "Charte des 10 commandements d'excellence managériale." },
+            { id: 25, module: "Clôture & Évaluation écrite", pacing: "01:58 – 02:00 (2 min)", title: "Merci pour votre Attention et votre Engagement", notes: "Questions/réponses, QCM individuel et signature d'émargement." }
+        ];
+
+        let currentSlide = 0;
+        const container = document.getElementById('slide-container');
+        const drawerList = document.getElementById('drawer-list');
+
+        SLIDES.forEach((slide, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'w-full text-left p-2.5 rounded-xl hover:bg-hydra-50 transition flex items-start gap-2.5 group border border-transparent hover:border-hydra-200';
+            btn.onclick = () => { goToSlide(idx); toggleDrawer(); };
+            btn.innerHTML = `
+                <span class="w-6 h-6 rounded-lg bg-slate-100 group-hover:bg-hydra-700 group-hover:text-white text-hydra-800 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+                <div class="overflow-hidden flex-1">
+                    <p class="text-xs font-bold text-slate-800 truncate">${slide.title}</p>
+                    <div class="flex items-center justify-between mt-0.5">
+                        <span class="text-[10px] text-slate-500">${slide.module}</span>
+                        <span class="text-[9.5px] font-mono text-hydra-700 font-semibold">${slide.pacing}</span>
+                    </div>
+                </div>
+            `;
+            drawerList.appendChild(btn);
+        });
+
+        window.toggleCase = function(num) {
+            const el = document.getElementById(`case-${num}`);
+            if (el) el.classList.toggle('hidden');
+        };
+
+        function renderSlideUI(idx) {
+            const slide = SLIDES[idx];
+            document.getElementById('current-block-badge').innerText = slide.module;
+            document.getElementById('current-pacing-target').innerHTML = `<i data-lucide="clock" class="w-3.5 h-3.5 text-hydra-600"></i> Rythme 2h : <strong class="text-hydra-900">${slide.pacing}</strong>`;
+            
+            const pct = Math.round(((idx + 1) / SLIDES.length) * 100);
+            document.getElementById('slide-counter').innerText = `Diapositive ${idx + 1} / ${SLIDES.length} (${pct}%)`;
+            document.getElementById('slide-progress').style.width = `${pct}%`;
+
+            document.getElementById('speaker-pacing').innerText = `Timing recommandé : ${slide.pacing}`;
+            document.getElementById('speaker-notes-text').innerText = slide.notes;
+
+            document.getElementById('prev-btn').disabled = idx === 0;
+            document.getElementById('next-btn').disabled = idx === SLIDES.length - 1;
+
+            container.innerHTML = generateSlideHtml(idx + 1);
+            lucide.createIcons();
+            if (window.renderMathInElement) {
+                renderMathInElement(container, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+        }
+
+        function generateSlideHtml(id) {
+            if (id === 1) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3.5 h-9 rounded-full bg-gradient-to-b from-emerald-600 via-slate-200 to-rose-600 shadow-xs"></div>
+                            <div>
+                                <p class="text-[11px] font-extrabold tracking-widest uppercase text-slate-500">République Algérienne Démocratique et Populaire</p>
+                                <p class="text-xs font-extrabold text-hydra-700 uppercase tracking-wider">Ministère de l'Industrie Pharmaceutique (MIP) • Agence Nationale des Produits Pharmaceutiques (ANPP)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5 shadow-xs">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Guide ANPP 2026 & Cahier des Charges (Art. 1–36)
+                            </span>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-hydra-50 text-hydra-800 border border-hydra-200">Durée : 2 heures</span>
+                        </div>
+                    </div>
+                    <div class="my-auto py-4 grid lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-hydra-50 border border-hydra-200 text-hydra-800 text-xs font-black uppercase tracking-widest">
+                                <i data-lucide="award" class="w-4 h-4 text-pharma-600"></i> Formation Qualité & Réglementaire — BPDG / BPS
+                            </div>
+                            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-hydra-900 leading-[1.15]">
+                                BONNES PRATIQUES DE <span class="text-transparent bg-clip-text bg-gradient-to-r from-hydra-700 via-hydra-500 to-pharma-600">DISTRIBUTION EN GROS</span> & DE STOCKAGE
+                            </h1>
+                            <p class="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
+                                À l'usage des Établissements Pharmaceutiques de Distribution en Gros :<br>
+                                <span class="text-hydra-900 font-bold">Produits Pharmaceutiques & Dispositifs Médicaux à Usage Humain</span>
+                            </p>
+                            <div class="grid sm:grid-cols-3 gap-3 pt-2">
+                                <div class="glass-card p-3.5 rounded-2xl flex items-center gap-3">
+                                    <div class="p-2.5 rounded-xl bg-hydra-50 text-hydra-600"><i data-lucide="check-circle-2" class="w-5 h-5"></i></div>
+                                    <span class="text-xs font-bold text-slate-800 leading-snug">Maîtrise de la Qualité (BPx)</span>
+                                </div>
+                                <div class="glass-card p-3.5 rounded-2xl flex items-center gap-3">
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-600"><i data-lucide="lock" class="w-5 h-5"></i></div>
+                                    <span class="text-xs font-bold text-slate-800 leading-snug">Sécurisation Approvisionnement</span>
+                                </div>
+                                <div class="glass-card p-3.5 rounded-2xl flex items-center gap-3">
+                                    <div class="p-2.5 rounded-xl bg-amber-50 text-amber-600"><i data-lucide="scale" class="w-5 h-5"></i></div>
+                                    <span class="text-xs font-bold text-slate-800 leading-snug">Conformité Nationale ANPP/MIP</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 space-y-4">
+                            <div class="hydra-brand-card p-6 rounded-3xl shadow-xl relative overflow-hidden border border-hydra-700">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="text-[11px] font-bold uppercase tracking-widest brand-sky">Animation & Direction Qualité</p>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-white/15 brand-white text-[10px] font-bold uppercase tracking-wider">Groupe Hydrapharm</span>
+                                </div>
+                                <h2 class="text-2xl font-black brand-white">Boussad TAMAZIRT</h2>
+                                <p class="text-sm font-bold brand-emerald mt-0.5">Responsable Qualité</p>
+                                <div class="mt-4 pt-4 border-t border-white/15 flex items-center justify-between">
+                                    <div>
+                                        <p class="text-xs font-extrabold brand-white">SPA ABC MED</p>
+                                        <p class="text-xs brand-muted">Établissement Pharmaceutique de Distribution en Gros</p>
+                                    </div>
+                                    <div class="px-3 py-1.5 rounded-xl bg-white/15 border border-white/20 text-xs font-mono brand-white font-bold">Durée : 2h00</div>
+                                </div>
+                            </div>
+                            <div class="glass-card p-4 rounded-2xl space-y-2">
+                                <p class="text-xs font-extrabold uppercase tracking-wider text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="book-open-check" class="w-4 h-4 text-pharma-600"></i> Référentiels Officiels de la Formation
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700">
+                                    <li>• <strong class="text-slate-900">Guide ANPP (Édition 2026) :</strong> Bonnes Pratiques de Distribution et de Stockage (19 chapitres + Annexe 1).</li>
+                                    <li>• <strong class="text-slate-900">Cahier des Charges Officiel (Art. 1 à 36) :</strong> Annexe distribution en gros.</li>
+                                    <li>• <strong class="text-slate-900">Loi n° 18-11</strong> • <strong class="text-slate-900">Décret 21-82</strong> • <strong class="text-slate-900">Décret 19-379</strong> (Psychotropes) • <strong class="text-slate-900">BPF Algérie 2022</strong> & <strong class="text-slate-900">ISO 13485:2016</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-200 pt-3">
+                        <span>Utilisez les flèches <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded font-mono">←</kbd> <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded font-mono">→</kbd> pour naviguer</span>
+                        <span class="text-hydra-800 font-bold">Groupe Hydrapharm • 13 Modules • 25 Diapositives</span>
+                    </div>
+                </div>
+                `;
+            } else {
+                const cur = SLIDES[id - 1];
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">${cur.module}</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">${cur.title}</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-sky-50 text-sky-800 border border-sky-200 text-xs font-bold">${cur.pacing}</span>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl space-y-3">
+                            <p class="text-sm font-semibold text-slate-800">${cur.notes}</p>
+                            <p class="text-xs text-slate-600">Diapositive ${cur.id} / 25 — Référentiels BPDG SPA ABC MED (Groupe Hydrapharm).</p>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>${cur.module}</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < SLIDES.length - 1) {
+                currentSlide++;
+                renderSlideUI(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlideUI(currentSlide);
+            }
+        }
+
+        function goToSlide(idx) {
+            if (idx >= 0 && idx < SLIDES.length) {
+                currentSlide = idx;
+                renderSlideUI(currentSlide);
+            }
+        }
+
+        function toggleDrawer() {
+            const drawer = document.getElementById('module-drawer');
+            const backdrop = document.getElementById('drawer-backdrop');
+            const isOpen = !drawer.classList.contains('-translate-x-full');
+            if (isOpen) {
+                drawer.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+            } else {
+                drawer.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            }
+        }
+
+        function toggleSpeakerNotes() {
+            document.getElementById('speaker-modal').classList.toggle('hidden');
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        let remainingSeconds = 7200;
+        let timerInterval = null;
+
+        function formatTime(sec) {
+            const h = String(Math.floor(sec / 3600)).padStart(2, '0');
+            const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+            const s = String(sec % 60).padStart(2, '0');
+            return `${h}:${m}:${s}`;
+        }
+
+        function toggleTimer() {
+            const btn = document.getElementById('timer-btn');
+            const dot = document.getElementById('timer-dot');
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                btn.innerHTML = '<i data-lucide="play" class="w-3.5 h-3.5"></i>';
+                dot.className = 'w-2 h-2 rounded-full bg-amber-500';
+            } else {
+                dot.className = 'w-2 h-2 rounded-full bg-pharma-500 animate-pulse';
+                btn.innerHTML = '<i data-lucide="pause" class="w-3.5 h-3.5"></i>';
+                timerInterval = setInterval(() => {
+                    if (remainingSeconds > 0) {
+                        remainingSeconds--;
+                        document.getElementById('timer-display').innerText = formatTime(remainingSeconds);
+                    } else {
+                        clearInterval(timerInterval);
+                    }
+                }, 1000);
+            }
+            lucide.createIcons();
+        }
+
+        function resetTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = null;
+            remainingSeconds = 7200;
+            document.getElementById('timer-display').innerText = '02:00:00';
+            document.getElementById('timer-btn').innerHTML = '<i data-lucide="play" class="w-3.5 h-3.5"></i>';
+            document.getElementById('timer-dot').className = 'w-2 h-2 rounded-full bg-pharma-500';
+            lucide.createIcons();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'n' || e.key === 'N') {
+                toggleSpeakerNotes();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullScreen();
+            } else if (e.key === 'm' || e.key === 'M') {
+                toggleDrawer();
+            }
+        });
+
+        renderSlideUI(0);
+    </script>
+</body>
+</html>

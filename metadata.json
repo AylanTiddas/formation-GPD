@@ -1,0 +1,6 @@
+{
+  "name": "Formation BPDG — SPA ABC MED (Groupe Hydrapharm)",
+  "description": "Présentation et formation interactive sur les Bonnes Pratiques de Distribution en Gros (BPDG) et de Stockage selon le Guide ANPP 2026 et le Cahier des charges officiel algérien.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
