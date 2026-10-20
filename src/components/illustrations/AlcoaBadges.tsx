@@ -87,7 +87,7 @@ export const AlcoaBadges: React.FC = () => {
             <div className="text-emerald-900 bg-emerald-50/70 p-2.5 rounded border border-emerald-300">
               Lot <span className="line-through text-rose-600">AB123</span> <strong className="text-slate-900 bg-emerald-100 px-1 rounded">AC124</strong>
               <span className="text-slate-600 text-[11px] font-sans ml-2">
-                — <em>(Visa PDT Boussad T., 15/10/2026 - Motif : Erreur de frappe)</em>
+                — <em>(Visa Pharmacien DT Dr. Asma KETTOU, 15/10/2026 - Motif : Erreur de frappe)</em>
               </span>
               <div className="mt-1 text-[11px] text-emerald-800 font-sans font-semibold">
                 [CONFORME ALCOA+] : Biffé d'un seul trait fin horizontal. Le texte d'origine demeure lisible. Nouvelle valeur inscrite avec signature, date et motif.

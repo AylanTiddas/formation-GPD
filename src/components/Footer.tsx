@@ -58,8 +58,13 @@ export const Footer: React.FC<FooterProps> = ({
           </span>
         </div>
 
+        <div className="hidden lg:flex items-center gap-1.5 text-[11px] text-slate-500 bg-slate-100/80 px-2.5 py-1 rounded-full border border-slate-200">
+          <span className="font-semibold text-hydra-800">🔍 Clic sur une carte :</span>
+          <span>Plein écran (← → naviguer, Échap quitter)</span>
+        </div>
+
         <div className="hidden sm:flex items-center gap-2 text-xs text-slate-600">
-          <span className="font-semibold text-slate-800">Boussad Tamazirt • RQ</span>
+          <span className="font-semibold text-slate-800">Dr. Asma KETTOU (DT) • Boussad Tamazirt (RQ)</span>
           <span className="text-slate-300">|</span>
           <span className="text-hydra-700 font-extrabold">SPA ABC MED (Groupe Hydrapharm)</span>
         </div>

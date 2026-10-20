@@ -158,19 +158,19 @@ export const SLIDES_DATA: Slide[] = [
     id: 18,
     module: "Module 9 : Transport & Logistique Sécurisée",
     pacing: "01:23 – 01:30 (7 min)",
-    notes: "Couvrir le Chapitre 14 du Guide ANPP : véhicules frigorifiques, planification Grand Sud (créneaux nocturnes, points relais réfrigérés), chargement LIFO, ressuage des plaques eutectiques, transport sécurisé des psychotropes (Décret 19-379) et protocole en cas de panne.",
+    notes: "Couvrir le Chapitre 14 du Guide ANPP : véhicules frigorifiques qualifiés, maintien de la température dirigée, chargement LIFO, ressuage des plaques eutectiques, transport sécurisé des psychotropes (Décret 19-379) et protocole en cas de panne.",
     title: "Transport sous Température Dirigée & Gestion des Urgences",
     subtitle: "Guide ANPP Chapitre 14 & Décret 19-379",
-    badge: "Planification Grand Sud • Chargement LIFO"
+    badge: "Véhicules Qualifiés • Chargement LIFO"
   },
   {
     id: 19,
     module: "Module 10 : Réclamations, Retours & Rappels",
     pacing: "01:30 – 01:35 (5 min)",
-    notes: "Expliquer le traitement des réclamations (Art. 23 & Chap. 7), les conditions cumulatives très strictes pour réintégrer un retour client (Guide ANPP Chap. 8 : délai ex. 10 jours, 6 preuves documentaires pour le froid, interdiction absolue de réintégrer un produit volé récupéré) et le rappel de lot avec Mock Recall annuel (Art. 24-25).",
+    notes: "Expliquer le traitement des réclamations (Art. 23 & Chap. 7), les conditions cumulatives très strictes pour réintégrer un retour client (Guide ANPP Chap. 8 : aucun délai légal strict de 10 jours, délai acceptable fixé par procédure interne ex. 7 jours chez ABC MED, 6 preuves documentaires pour le froid, interdiction absolue de réintégrer un produit volé récupéré) et le rappel de lot avec Mock Recall annuel (Art. 24-25).",
     title: "Réclamations Clients, Retours (Chap. 8) & Rappels de Lots",
     subtitle: "Cahier des Charges (Art. 23 à 25) & Guide ANPP Chapitres 7 & 8",
-    badge: "Délai Retour (ex. 10 Jours) • Mock Recall Annuel"
+    badge: "Procédure Retours • Mock Recall Annuel"
   },
   {
     id: 20,
@@ -212,7 +212,7 @@ export const SLIDES_DATA: Slide[] = [
     id: 24,
     module: "Module 13 : Synthèse Managériale",
     pacing: "01:56 – 01:58 (2 min)",
-    notes: "Synthèse exécutive par Boussad Tamazirt : les 10 Commandements d'Or des BPDG en Algérie à afficher et appliquer chaque jour chez SPA ABC MED.",
+    notes: "Synthèse exécutive par l'équipe Qualité & Direction Technique (Dr. Asma KETTOU DT, Boussad Tamazirt RQ) : les 10 Commandements d'Or des BPDG en Algérie à afficher et appliquer chaque jour chez SPA ABC MED.",
     title: "Les 10 Commandements d'Or des BPDG en Algérie",
     subtitle: "Module 13 • Synthèse & Engagement Qualité",
     badge: "Charte d'Excellence Opérationnelle"

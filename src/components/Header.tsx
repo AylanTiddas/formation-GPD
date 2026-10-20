@@ -40,8 +40,8 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [downloaded, setDownloaded] = React.useState(false);
 
-  const handleDownload = () => {
-    downloadStandaloneHtmlFile();
+  const handleDownload = async () => {
+    await downloadStandaloneHtmlFile();
     setDownloaded(true);
     setTimeout(() => setDownloaded(false), 2500);
   };
@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </div>
             <p className="text-[10px] text-slate-500 hidden sm:block">
-              Par <strong className="text-pharma-700 font-semibold">Boussad Tamazirt</strong> — RQ
+              Par <strong className="text-pharma-700 font-semibold">Boussad Tamazirt</strong> (RQ) • DT : <strong className="text-slate-700 font-semibold">Dr. Asma KETTOU</strong>
             </p>
           </div>
         </div>
@@ -131,10 +131,10 @@ export const Header: React.FC<HeaderProps> = ({
               ? 'bg-emerald-600 text-white border-emerald-600'
               : 'bg-hydra-600 hover:bg-hydra-700 text-white border-hydra-600'
           }`}
-          title="Télécharger le fichier unique HTML autonome sans erreurs"
+          title="Télécharger la formation complète (25 diapositives) en fichier HTML autonome"
         >
           {downloaded ? <Check className="w-3.5 h-3.5" /> : <Download className="w-3.5 h-3.5" />}
-          <span className="hidden lg:inline">{downloaded ? 'Téléchargé !' : 'Fichier HTML Unique'}</span>
+          <span className="hidden sm:inline">{downloaded ? 'Téléchargé !' : 'Télécharger Formation HTML'}</span>
         </button>
 
         {/* Formateur Guide 2H */}

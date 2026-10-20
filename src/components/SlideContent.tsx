@@ -48,7 +48,9 @@ import {
   KeyRound,
   Handshake,
   ClipboardList,
-  Gavel
+  Gavel,
+  Maximize2,
+  ShieldAlert
 } from 'lucide-react';
 import { RegulatoryPyramid } from './illustrations/RegulatoryPyramid';
 import { WarehouseBlueprint } from './illustrations/WarehouseBlueprint';
@@ -59,7 +61,26 @@ import { HistoricalCatastrophes } from './illustrations/HistoricalCatastrophes';
 import { PpeHygieneShowcase } from './illustrations/PpeHygieneShowcase';
 import { AlcoaBadges } from './illustrations/AlcoaBadges';
 import { TransportLogisticsMap } from './illustrations/TransportLogisticsMap';
+import { HabilitationCertificateVisual } from './illustrations/HabilitationCertificateVisual';
+import { DocHierarchyPyramid } from './illustrations/DocHierarchyPyramid';
+import { HydrapharmProcedureVisual } from './illustrations/HydrapharmProcedureVisual';
+import { GoodDocPracticesVisual } from './illustrations/GoodDocPracticesVisual';
+import { ProductStatusLabelsVisual } from './illustrations/ProductStatusLabelsVisual';
+import { Deviation5StepsVisual } from './illustrations/Deviation5StepsVisual';
+import { WarehouseRulesVisual } from './illustrations/WarehouseRulesVisual';
+import { ContractValidationVisual } from './illustrations/ContractValidationVisual';
+import { MedicineCompositionVisual } from './illustrations/MedicineCompositionVisual';
+import { SupplyChainVisual } from './illustrations/SupplyChainVisual';
+import { FakeVsRealVisual } from './illustrations/FakeVsRealVisual';
+import { RecallNoticeVisual } from './illustrations/RecallNoticeVisual';
+import { TenChaptersBpdgVisual } from './illustrations/TenChaptersBpdgVisual';
 import { CASE_STUDIES } from '../data/slidesContent';
+import { CardFullscreenModal } from './CardFullscreenModal';
+import { AnppGuideCoverVisual } from './illustrations/AnppGuideCoverVisual';
+import { HydrapharmForbiddenPracticesVisual } from './illustrations/HydrapharmForbiddenPracticesVisual';
+import { ErrorCorrectionVisual } from './illustrations/ErrorCorrectionVisual';
+import { ContractHandshakeVisual } from './illustrations/ContractHandshakeVisual';
+import { CoartemFakeVsRealVisual } from './illustrations/CoartemFakeVsRealVisual';
 
 interface SlideContentProps {
   slideId: number;
@@ -73,7 +94,72 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
     setOpenCases((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  switch (slideId) {
+  // Fullscreen modal state for cards and authentic illustrations
+  const [fullscreenModal, setFullscreenModal] = useState<{
+    isOpen: boolean;
+    title: string;
+    subtitle?: string;
+    badge?: string;
+    cards: Array<{ title: string; subtitle?: string; badge?: string; content: React.ReactNode }>;
+    currentIndex: number;
+  }>({
+    isOpen: false,
+    title: '',
+    subtitle: '',
+    badge: 'Document Réel BPDG',
+    cards: [],
+    currentIndex: 0,
+  });
+
+  const openFullscreen = (cards: Array<{ title: string; subtitle?: string; badge?: string; content: React.ReactNode }>, initialIndex = 0) => {
+    if (!cards || cards.length === 0) return;
+    const current = cards[initialIndex] || cards[0];
+    setFullscreenModal({
+      isOpen: true,
+      title: current.title,
+      subtitle: current.subtitle,
+      badge: current.badge || "Document Officiel BPDG",
+      cards,
+      currentIndex: initialIndex,
+    });
+  };
+
+  const closeFullscreen = () => {
+    setFullscreenModal((prev) => ({ ...prev, isOpen: false }));
+  };
+
+  const handleNextCard = () => {
+    setFullscreenModal((prev) => {
+      if (prev.cards.length <= 1) return prev;
+      const nextIdx = (prev.currentIndex + 1) % prev.cards.length;
+      const nextCard = prev.cards[nextIdx];
+      return {
+        ...prev,
+        currentIndex: nextIdx,
+        title: nextCard.title,
+        subtitle: nextCard.subtitle,
+        badge: nextCard.badge || prev.badge,
+      };
+    });
+  };
+
+  const handlePrevCard = () => {
+    setFullscreenModal((prev) => {
+      if (prev.cards.length <= 1) return prev;
+      const prevIdx = (prev.currentIndex - 1 + prev.cards.length) % prev.cards.length;
+      const prevCard = prev.cards[prevIdx];
+      return {
+        ...prev,
+        currentIndex: prevIdx,
+        title: prevCard.title,
+        subtitle: prevCard.subtitle,
+        badge: prevCard.badge || prev.badge,
+      };
+    });
+  };
+
+  const renderSlideContent = () => {
+    switch (slideId) {
     // ==========================================
     // SLIDE 1 : COUVERTURE OFFICIELLE
     // ==========================================
@@ -137,11 +223,19 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
             <div className="lg:col-span-5 space-y-4">
               <div className="hydra-brand-card p-6 rounded-3xl shadow-xl relative overflow-hidden border border-hydra-700">
                 <div className="flex items-center justify-between mb-2">
-                  <p className="text-[11px] font-bold uppercase tracking-widest brand-sky">Animation & Direction Qualité</p>
+                  <p className="text-[11px] font-bold uppercase tracking-widest brand-sky">Direction Technique & Qualité</p>
                   <span className="px-2.5 py-0.5 rounded-full bg-white/15 brand-white text-[10px] font-bold uppercase tracking-wider">Groupe Hydrapharm</span>
                 </div>
-                <h2 className="text-2xl font-black brand-white">Boussad TAMAZIRT</h2>
-                <p className="text-sm font-bold brand-emerald mt-0.5">Responsable Qualité</p>
+                <div className="space-y-2">
+                  <div>
+                    <h2 className="text-xl font-black brand-white">Dr. Asma KETTOU</h2>
+                    <p className="text-xs font-bold brand-emerald">Pharmacien Directeur Technique (DT)</p>
+                  </div>
+                  <div className="pt-2 border-t border-white/15">
+                    <h3 className="text-lg font-black brand-white">Boussad TAMAZIRT</h3>
+                    <p className="text-xs font-bold brand-sky">Responsable Qualité (RQ) — Formateur</p>
+                  </div>
+                </div>
                 <div className="mt-4 pt-4 border-t border-white/15 flex items-center justify-between">
                   <div>
                     <p className="text-xs font-extrabold brand-white">SPA ABC MED</p>
@@ -200,59 +294,49 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-5">
-              <div className="glass-card p-4 rounded-2xl border-t-4 border-t-sky-500">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-black text-sky-700">1. CADRE LÉGAL ALGÉRIEN</span>
-                  <Scale className="w-4 h-4 text-sky-600" />
-                </div>
-                <ul className="text-xs text-slate-600 space-y-1.5">
-                  <li>• S'approprier le <strong>Guide ANPP 2026</strong> et le Cahier des charges.</li>
-                  <li>• Comprendre les responsabilités légales du <strong>PDT</strong>.</li>
-                  <li>• Maîtriser les obligations de déclarations et stocks vis-à-vis du <strong>MIP</strong>.</li>
-                </ul>
-              </div>
+            {/* Direct Visual from user attachment: The 10 Official BPDG Chapters */}
+            <div className="mb-4">
+              <TenChaptersBpdgVisual />
+            </div>
 
-              <div className="glass-card p-4 rounded-2xl border-t-4 border-t-emerald-500">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-black text-emerald-700">2. PILOTAGE DU SMQ</span>
-                  <GitPullRequest className="w-4 h-4 text-emerald-600" />
+            {/* 3 Corporate Branches Transversal Synthesis */}
+            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-hydra-900 to-slate-900 text-white shadow-sm mb-2">
+              <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 block mb-2">
+                🎯 Boussole Transversale par Métier : Ce que CHAQUE structure doit retenir
+              </span>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="font-extrabold text-cyan-300 flex items-center gap-1.5 mb-1">
+                    <span>📦 Entrepôt & Logistique</span>
+                  </div>
+                  <p className="text-[11px] text-slate-200 leading-snug">
+                    Hygiène et EPI stricts, interdictions (fumer, manger, mâcher), surélévation sur palettes, rotation FEFO, étiquettes statuts, pack-out froid sans contact et signalement immédiat de toute déviation.
+                  </p>
                 </div>
-                <ul className="text-xs text-slate-600 space-y-1.5">
-                  <li>• Appliquer les Bonnes Pratiques Documentaires (<strong>ALCOA+</strong>) & traçabilité.</li>
-                  <li>• Déployer la gestion des déviations, <strong>CAPA</strong> et risques (<strong>ICH Q9</strong>).</li>
-                  <li>• Gérer réclamations, retours, rappels et auto-inspection annuelle.</li>
-                </ul>
-              </div>
 
-              <div className="glass-card p-4 rounded-2xl border-t-4 border-t-cyan-500">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-black text-cyan-700">3. EXCELLENCE ENTREPÔT</span>
-                  <Warehouse className="w-4 h-4 text-cyan-600" />
+                <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="font-extrabold text-emerald-300 flex items-center gap-1.5 mb-1">
+                    <span>💼 Commercial & ADV</span>
+                  </div>
+                  <p className="text-[11px] text-slate-200 leading-snug">
+                    Vente exclusive aux clients officiellement agréés (officines, cliniques), respect du stock permanent de 30 jours (2/3 nomenclature), qualification des commandes et respect du délai contractuel fixé pour les retours (ex. 7 jours chez ABC MED).
+                  </p>
                 </div>
-                <ul className="text-xs text-slate-600 space-y-1.5">
-                  <li>• Organiser les flux : réception, stockage <strong>FEFO</strong>, picking et expédition.</li>
-                  <li>• Respecter les normes dimensionnelles (500 m² méd., 90 m² DM, ≥ 590 m² total).</li>
-                  <li>• Maîtriser la chaîne du froid (+2°C à +8°C), mapping et alarmes 24/7.</li>
-                </ul>
-              </div>
 
-              <div className="glass-card p-4 rounded-2xl border-t-4 border-t-rose-500">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-black text-rose-700">4. RISQUES CRITIQUES</span>
-                  <AlertTriangle className="w-4 h-4 text-rose-600" />
+                <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="font-extrabold text-amber-300 flex items-center gap-1.5 mb-1">
+                    <span>🏢 Administration & Supports</span>
+                  </div>
+                  <p className="text-[11px] text-slate-200 leading-snug">
+                    Certificats d'habilitation au poste (1ère habilitation/réhabilitation), fiches de poste, écriture au stylo bleu indélébile sans blanco, archivage légal 5 ans, contrats écrits des sous-traitants et intégrité WMS.
+                  </p>
                 </div>
-                <ul className="text-xs text-slate-600 space-y-1.5">
-                  <li>• Identifier et signaler immédiatement tout médicament suspect de <strong>falsification</strong>.</li>
-                  <li>• Gérer rigoureusement stupéfiants et psychotropes (<strong>Décret n° 19-379</strong>).</li>
-                  <li>• Garantir l'intégrité des thermosensibles et le transport qualifié.</li>
-                </ul>
               </div>
             </div>
 
             {/* 13 Modules Navigation Grid */}
             <div className="grid lg:grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <div className="glass-card p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
                 <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
                   <h3 className="text-xs font-black uppercase tracking-wider text-sky-800">Partie I : Fondements, Locaux & Stockage (55 min)</h3>
                   <span className="text-[11px] font-mono text-slate-500">Modules 1 à 6</span>
@@ -285,7 +369,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <div className="glass-card p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
                 <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
                   <h3 className="text-xs font-black uppercase tracking-wider text-emerald-800">Partie II : Opérations, Flux Spécifiques & Audit (55 min)</h3>
                   <span className="text-[11px] font-mono text-slate-500">Modules 7 à 13</span>
@@ -344,54 +428,14 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-4 mb-4">
-              <div className="lg:col-span-6 space-y-3">
-                <div className="glass-card p-4 rounded-2xl">
-                  <h3 className="text-xs font-black uppercase tracking-wider text-sky-800 mb-2.5 flex items-center gap-2">
-                    <Pill className="w-4 h-4 text-sky-600" /> 1. Composition d'un Médicament
-                  </h3>
-                  <ul className="space-y-1.5 text-xs text-slate-700">
-                    <li><strong className="text-slate-900">• Principe Actif Pharmaceutique (PAP) / Substance Active :</strong> substance dotée d'une activité pharmacologique responsable de l'effet thérapeutique.</li>
-                    <li><strong className="text-slate-900">• Excipients :</strong> composants dépourvus d'action propre, facilitant la fabrication, la stabilité, la conservation, l'absorption et la tolérance du produit.</li>
-                    <li><strong className="text-slate-900">• Conditionnement primaire :</strong> emballage en contact direct avec le médicament (blister, flacon, ampoule, seringue préremplie).</li>
-                    <li><strong className="text-slate-900">• Conditionnement secondaire :</strong> emballage externe protecteur (boîte en carton, étui) portant les mentions légales en <span className="text-emerald-700 font-bold">langues arabe et française</span>.</li>
-                    <li><strong className="text-slate-900">• Notice d'information :</strong> document destiné au patient et au praticien, précisant posologie, indications, contre-indications et conservation.</li>
-                  </ul>
-                </div>
+            {/* Direct Visual from user attachment: Composition & 4 Roles of Medicine */}
+            <div className="mb-4">
+              <MedicineCompositionVisual />
+            </div>
 
-                <div className="glass-card p-4 rounded-2xl">
-                  <h3 className="text-xs font-black uppercase tracking-wider text-emerald-800 mb-2.5 flex items-center gap-2">
-                    <HeartPulse className="w-4 h-4 text-emerald-600" /> 2. Rôles & Statut Juridique Singulier
-                  </h3>
-                  <div className="grid grid-cols-2 gap-2 text-xs text-slate-700 mb-2.5">
-                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong className="text-slate-900">Curatif :</strong> guérir infections et pathologies.</div>
-                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong className="text-slate-900">Symptomatique :</strong> soulager douleur et fièvre.</div>
-                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong className="text-slate-900">Préventif :</strong> vaccins, sérums, prophylaxies.</div>
-                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong className="text-slate-900">Diagnostique :</strong> produits de contraste et réactifs.</div>
-                  </div>
-                  <div className="p-2.5 rounded-xl bg-sky-50 border border-sky-200 text-xs text-sky-900">
-                    <strong>Statut juridique & Exigence éthique :</strong> Le médicament n'est <strong>PAS une marchandise ordinaire</strong>. Il engage directement la vie des personnes vulnérables. Rigueur absolue, conscience professionnelle et honnêteté sont requises à tous les niveaux.
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 space-y-3">
-                <div className="glass-card p-4 rounded-2xl border-l-4 border-l-amber-500">
-                  <h3 className="text-xs font-black uppercase tracking-wider text-amber-800 mb-2 flex items-center gap-2">
-                    <AlertTriangle className="w-4 h-4 text-amber-600" /> Risques Majeurs liés à une Défaillance de Distribution
-                  </h3>
-                  <ul className="space-y-1.5 text-xs text-slate-700">
-                    <li>• <strong className="text-slate-900">Dégradation physico-chimique</strong> du principe actif sous l'effet de la chaleur, de l'humidité ou du gel (perte d'activité, toxicité).</li>
-                    <li>• <strong className="text-slate-900">Innocuité compromise</strong> des vaccins et insulines en cas de rupture de la chaîne du froid (+2°C à +8°C).</li>
-                    <li>• <strong className="text-slate-900">Risque mortel de confusion de lots</strong> ou de délivrance de mauvais produits suite à des erreurs de picking ou d'étiquetage.</li>
-                    <li>• <strong className="text-slate-900">Pénétration de produits falsifiés</strong>, sous-dosés, volés ou périmés dans le réseau officiel.</li>
-                    <li>• <strong className="text-slate-900">Ruptures d'approvisionnement</strong> compromettant la continuité des soins des malades.</li>
-                  </ul>
-                </div>
-
-                {/* Added Infographic: Historical Catastrophes */}
-                <HistoricalCatastrophes />
-              </div>
+            {/* Historical Catastrophes Warning */}
+            <div className="mb-2">
+              <HistoricalCatastrophes />
             </div>
           </div>
 
@@ -405,7 +449,100 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
     // ==========================================
     // SLIDE 4 : MODULE 1 (B) - PYRAMIDE RÉGLEMENTAIRE
     // ==========================================
-    case 4:
+    case 4: {
+      const slide4Cards = [
+        {
+          title: "Hiérarchie des Textes Juridiques Algériens",
+          subtitle: "Pyramide à 4 paliers : Loi 18-11 ➔ Décrets ➔ Cahier des Charges ➔ Guide ANPP 2026",
+          badge: "Architecture Juridique Officielle",
+          content: <RegulatoryPyramid />
+        },
+        {
+          title: "Couverture Officielle du Guide ANPP 2026",
+          subtitle: "Guide des Bonnes Pratiques de Distribution et de Stockage (MIP / ANPP)",
+          badge: "Document Réel d'Entreprise",
+          content: <AnppGuideCoverVisual />
+        },
+        {
+          title: "1. Lois & Décrets Exécutifs Fondateurs",
+          subtitle: "Cadre légal de santé publique et réglementation des psychotropes",
+          badge: "Niveau 1 & 2",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-sky-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-sky-800 flex items-center gap-2">
+                <Scale className="w-5 h-5 text-sky-600" /> 1. Lois & Décrets Exécutifs
+              </h3>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Loi n° 18-11 du 2 juillet 2018 relative à la santé :</strong>
+                  Socle juridique suprême instituant les règles de fabrication, distribution et dispensation des produits pharmaceutiques.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Décret exécutif n° 21-82 (23 fév. 2021) :</strong>
+                  Conditions d'agrément, installation et direction technique des établissements pharmaceutiques.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Décret exécutif n° 19-379 (31 déc. 2019) :</strong>
+                  Contrôle administratif, technique et sécuritaire renforcé des substances psychotropes.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Décret n° 20-324 :</strong>
+                  Missions et prérogatives régaliennes de l'Agence Nationale des Produits Pharmaceutiques (ANPP).
+                </li>
+              </ul>
+            </div>
+          )
+        },
+        {
+          title: "2. Cahier des Charges des Distributeurs en Gros (Art. 1 à 36)",
+          subtitle: "Exigences techniques, organisationnelles et de stocks permanents",
+          badge: "Niveau 3",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-emerald-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-emerald-800 flex items-center gap-2">
+                <FileCheck2 className="w-5 h-5 text-emerald-600" /> 2. Cahier des Charges Officiel
+              </h3>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Système d'Assurance Qualité (Art. 1 à 3) :</strong>
+                  Obligation de disposer d'un SMQ documenté, adapté à la distribution et au stockage sécurisé des médicaments.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Superficies Minimales Réglementaires (Art. 7) :</strong>
+                  ≥ 500 m² pour les médicaments (avec ≥ 200 m² d'un seul tenant pour le stockage), ≥ 90 m² pour les Dispositifs Médicaux, ≥ 590 m² pour activité mixte.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Stock Permanent & Nomenclature (Art. 4 & 18) :</strong>
+                  Obligation de détenir 2/3 de la nomenclature nationale et un stock permanent minimum couvrant 30 jours de ventes.
+                </li>
+              </ul>
+            </div>
+          )
+        },
+        {
+          title: "3. Guides Techniques & Référentiels (Chap. 19)",
+          subtitle: "Guide ANPP 2026, BPF 2022 et Norme ISO 13485:2016",
+          badge: "Niveau 4",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-amber-800 flex items-center gap-2">
+                <BookMarked className="w-5 h-5 text-amber-600" /> 3. Guides Techniques & Référentiels
+              </h3>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Guide ANPP 2026 :</strong>
+                  19 chapitres opérationnels + Annexe 1 définissant l'application terrain des Bonnes Pratiques de Distribution et de Stockage.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Double étiquetage linguistique :</strong>
+                  Mentions obligatoires sur les conditionnements en arabe et français conformément au décret.
+                </li>
+              </ul>
+            </div>
+          )
+        }
+      ];
+
       return (
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8">
           <div>
@@ -421,13 +558,37 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            {/* Added Regulatory Pyramid Visual Illustration */}
-            <div className="mb-4">
-              <RegulatoryPyramid />
+            {/* Visuals Grid: Pyramid & Real Official Cover */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4 items-stretch">
+              <div 
+                className="lg:col-span-8 cursor-pointer group relative"
+                onClick={() => openFullscreen(slide4Cards, 0)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
+                </div>
+                <RegulatoryPyramid />
+              </div>
+              <div 
+                className="lg:col-span-4 cursor-pointer group relative flex flex-col"
+                onClick={() => openFullscreen(slide4Cards, 1)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
+                </div>
+                <AnppGuideCoverVisual onZoom={() => openFullscreen(slide4Cards, 1)} />
+              </div>
             </div>
 
             <div className="grid lg:grid-cols-3 gap-3.5 mb-3 text-xs">
-              <div className="glass-card p-3.5 rounded-2xl border-t-2 border-t-sky-500">
+              <div 
+                className="glass-card p-3.5 rounded-2xl border-t-2 border-t-sky-500 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide4Cards, 2)}
+                title="Cliquer pour afficher en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-sky-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-extrabold uppercase tracking-wider text-sky-800 mb-1.5 flex items-center gap-1.5">
                   <Scale className="w-4 h-4 text-sky-600" /> 1. Lois & Décrets Exécutifs
                 </h3>
@@ -439,7 +600,14 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 </ul>
               </div>
 
-              <div className="glass-card p-3.5 rounded-2xl border-t-2 border-t-emerald-500">
+              <div 
+                className="glass-card p-3.5 rounded-2xl border-t-2 border-t-emerald-500 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide4Cards, 3)}
+                title="Cliquer pour afficher en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-emerald-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-extrabold uppercase tracking-wider text-emerald-800 mb-1.5 flex items-center gap-1.5">
                   <FileCheck2 className="w-4 h-4 text-emerald-600" /> 2. Cahier des Charges (Art. 1 à 36)
                 </h3>
@@ -451,7 +619,14 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 </ul>
               </div>
 
-              <div className="glass-card p-3.5 rounded-2xl border-t-2 border-t-amber-500">
+              <div 
+                className="glass-card p-3.5 rounded-2xl border-t-2 border-t-amber-500 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide4Cards, 4)}
+                title="Cliquer pour afficher en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-amber-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-extrabold uppercase tracking-wider text-amber-800 mb-1.5 flex items-center gap-1.5">
                   <BookMarked className="w-4 h-4 text-amber-600" /> 3. Guides Techniques (Chap. 19)
                 </h3>
@@ -479,6 +654,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
           </div>
         </div>
       );
+    }
 
     // ==========================================
     // SLIDE 5 : MODULE 2 - OBLIGATIONS GROSSISTE
@@ -498,21 +674,21 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
             </div>
 
             <div className="grid sm:grid-cols-3 gap-3.5 mb-4">
-              <div className="p-4 rounded-2xl bg-sky-50 border border-sky-200 flex items-center gap-4 shadow-xs">
+              <div className="glass-card p-4 rounded-2xl bg-sky-50 border border-sky-200 flex items-center gap-4 shadow-xs">
                 <div className="text-3xl font-black text-sky-700 font-mono">2/3</div>
                 <div>
                   <p className="text-xs font-bold text-slate-900 uppercase">Nomenclature Nationale (Art. 4 & 18)</p>
                   <p className="text-xs text-slate-600">Détenir et distribuer au moins deux tiers (2/3) des produits enregistrés en Algérie.</p>
                 </div>
               </div>
-              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-4 shadow-xs">
+              <div className="glass-card p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-4 shadow-xs">
                 <div className="text-3xl font-black text-emerald-700 font-mono">30 J</div>
                 <div>
                   <p className="text-xs font-bold text-slate-900 uppercase">Stock Permanent Minimum (Art. 18)</p>
                   <p className="text-xs text-slate-600">Couvrir en permanence au moins 30 jours de vente (médicaments essentiels & DM).</p>
                 </div>
               </div>
-              <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center gap-4 shadow-xs">
+              <div className="glass-card p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center gap-4 shadow-xs">
                 <div className="p-2.5 rounded-xl bg-amber-100 text-amber-800"><Building2 className="w-6 h-6" /></div>
                 <div>
                   <p className="text-xs font-bold text-slate-900 uppercase">Clients Autorisés (Art. 2)</p>
@@ -687,30 +863,34 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               <IshikawaDiagram />
             </div>
 
+            {/* Conduite a tenir en cas de déviation en 5 étapes - Direct from user attachments */}
+            <div className="mb-3">
+              <Deviation5StepsVisual />
+            </div>
+
             <div className="grid lg:grid-cols-2 gap-3 text-xs">
-              <div className="glass-card p-3.5 rounded-2xl space-y-2">
-                <span className="font-black text-sky-800 uppercase block">Traitement de la Déviation & CAPA :</span>
-                <p className="text-slate-700">
-                  • <strong>Déviation :</strong> Tout écart imprévu à une procédure ou paramètre critique (excursion thermique, casse, erreur de lot).<br />
-                  • <strong>Déclaration immédiate</strong> sur fiche de déviation et <strong>blocage conservatoire</strong> du lot.<br />
-                  • <strong>Investigation :</strong> 5 Pourquoi et Ishikawa 5M pour identifier la cause racine.<br />
-                  • <strong>CAPA :</strong> Action corrective (éliminer la cause) & Action préventive (éviter la survenue). Suivi d'efficacité à 3 ou 6 mois avant clôture par le PDT.
+              <div className="glass-card p-3 rounded-2xl space-y-1.5">
+                <span className="font-black text-sky-800 uppercase block">Méthodologie d'Analyse Cause Racine (Art. 6 & 13) :</span>
+                <p className="text-slate-700 leading-snug">
+                  • <strong>5 Pourquoi & Ishikawa :</strong> remonter à la source véritable (méthode, matériel, milieu, matière, main-d'œuvre).<br />
+                  • <strong>Action Corrective (AC) :</strong> corriger immédiatement l'anomalie constatée.<br />
+                  • <strong>Action Préventive (AP) :</strong> modifier la procédure ou l'infrastructure pour empêcher définitivement la récidive.
                 </p>
-                <div className="p-2 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 font-bold text-[11px]">
-                  ✖ INTERDICTION : Dissimuler une déviation constitue une faute professionnelle grave.
+                <div className="p-1.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 font-bold text-[10.5px]">
+                  ✖ INTERDICTION FORMELLE : Dissimuler une déviation constitue une faute professionnelle grave.
                 </div>
               </div>
 
-              <div className="glass-card p-3.5 rounded-2xl space-y-2">
+              <div className="glass-card p-3 rounded-2xl space-y-1.5">
                 <span className="font-black text-emerald-800 uppercase block">Management des Risques ICH Q9 :</span>
-                <p className="text-slate-700">
+                <p className="text-slate-700 leading-snug">
                   • <strong>1. Identifier</strong> les dangers à chaque étape (rupture froid, vol, inversion, casse).<br />
                   • <strong>2. Évaluer</strong> la criticité C = Gravité (G) × Probabilité (P) × Détectabilité (D).<br />
                   • <strong>3. Maîtriser</strong> par des barrières (alarmes, détrompeurs, double contrôle).<br />
                   • <strong>4. Réviser</strong> en revue de direction et après chaque incident majeur.
                 </p>
-                <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold text-[11px]">
-                  ✔ En transport : qualification saisonnière été/hiver des caisses et itinéraires.
+                <div className="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold text-[10.5px]">
+                  ✔ Logistique & Transport : qualification saisonnière été/hiver des caisses et itinéraires.
                 </div>
               </div>
             </div>
@@ -726,7 +906,92 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
     // ==========================================
     // SLIDE 8 : MODULE 4 (A) - PERSONNEL & MISSIONS PDT
     // ==========================================
-    case 8:
+    case 8: {
+      const slide8Cards = [
+        {
+          title: "Certificat d'Habilitation au Poste",
+          subtitle: "Fac-similé officiel SPA ABC MED • Art. 17 Cahier des charges & Chapitre 10 BPDG",
+          badge: "Document Réel d'Entreprise",
+          content: <HabilitationCertificateVisual />
+        },
+        {
+          title: "Structure & Organigramme RH Pharmaceutique",
+          subtitle: "Organisation, effectifs qualifiés et règle d'anti-cumul des responsabilités",
+          badge: "Art. 15-16",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-sky-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-sky-800 flex items-center gap-2">
+                <Users className="w-5 h-5 text-sky-600" /> Structure & Organigramme (Art. 15-16 & Chap. 10)
+              </h3>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Effectif qualifié et intègre :</strong>
+                  Présence d'un personnel en nombre suffisant, formé et habilité pour chaque mission critique de distribution.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Règle anti-cumul (Art. 15) :</strong>
+                  Interdiction absolue du cumul injustifié de responsabilités pouvant générer des conflits d'intérêts ou un risque qualité.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Pharmaciens Assistants (Art. 16) :</strong>
+                  Assistent le PDT dans la surveillance des opérations et assurent la continuité de service en cas d'absence.
+                </li>
+              </ul>
+            </div>
+          )
+        },
+        {
+          title: "Les 8 Attributions Clés du Pharmacien Directeur Technique",
+          subtitle: "Missions régaliennes et responsabilités légales du PDT devant l'ANPP et le MIP",
+          badge: "Responsabilité Pharmaceutique",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-amber-800 flex items-center gap-2">
+                <Award className="w-5 h-5 text-amber-600" /> Les 8 Attributions Clés du Pharmacien Directeur Technique (PDT)
+              </h3>
+              <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs font-semibold flex items-center justify-between">
+                <span>Pharmacien DT Titulaire (SPA ABC MED) : <strong className="text-amber-900">Dr. Asma KETTOU</strong></span>
+                <span className="text-[11px] px-2 py-0.5 rounded-md bg-amber-200/70 text-amber-900 font-mono font-bold">Art. 15-16 Cahier des charges</span>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">1. Maintien du SMQ</p>
+                  <p className="text-slate-600 mt-1">Supervise le manuel qualité, les SOP, les fiches de poste et la traçabilité des flux.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">2. Conformité AMM (Art. 18)</p>
+                  <p className="text-slate-600 mt-1">Vérifie l'enregistrement ANPP ou l'ATU valide à chaque arrivage avant commercialisation.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">3. Statut des Lots & Retours</p>
+                  <p className="text-slate-600 mt-1">Autorité exclusive pour libérer, mettre en quarantaine ou rejeter un lot.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">4. Psychotropes (Décret 19-379)</p>
+                  <p className="text-slate-600 mt-1">Détient personnellement la clé de l'armoire blindée et le registre coté et paraphé.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">5. Qualification Partenaires</p>
+                  <p className="text-slate-600 mt-1">Valide les agréments des fournisseurs, officines et contrats de sous-traitance (Art. 26).</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">6. Rappels de Lots & Falsifiés</p>
+                  <p className="text-slate-600 mt-1">Pilote le rappel d'urgence en &lt; 1 heure et déclare sans délai au MIP et à l'ANPP.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">7. Habilitation du Personnel</p>
+                  <p className="text-slate-600 mt-1">Valide les formations et signe les certificats d'habilitation au poste.</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <p className="font-black text-slate-900 text-sm">8. Interlocuteur MIP / ANPP</p>
+                  <p className="text-slate-600 mt-1">Accueille les inspecteurs officiels et garantit la conformité légale de l'établissement.</p>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      ];
+
       return (
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8">
           <div>
@@ -740,69 +1005,90 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-4">
-              <div className="lg:col-span-5 space-y-3">
-                <div className="glass-card p-4 rounded-2xl">
+            <div className="grid lg:grid-cols-12 gap-4 mb-4">
+              <div className="lg:col-span-6 space-y-3">
+                <div 
+                  className="glass-card p-4 rounded-2xl cursor-pointer hover:shadow-md transition relative group"
+                  onClick={() => openFullscreen(slide8Cards, 1)}
+                  title="Cliquer pour afficher en plein écran"
+                >
+                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-sky-600">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                  </div>
                   <h3 className="text-xs font-black uppercase tracking-wider text-sky-800 mb-2 flex items-center gap-2">
                     <Users className="w-4 h-4 text-sky-600" /> Structure & Organigramme (Art. 15-16 & Chap. 10)
                   </h3>
                   <ul className="space-y-1.5 text-xs text-slate-700">
-                    <li>• <strong className="text-slate-900">Effectif qualifié et intègre :</strong> suffisant pour l'activité.</li>
-                    <li>• <strong className="text-slate-900">Organigramme approuvé :</strong> PDT, pharmacien assistant, AQ, logistique.</li>
-                    <li>• <strong className="text-slate-900">Règle légale anti-cumul (Art. 15) :</strong> absence de chevauchement injustifié.</li>
-                    <li>• <strong className="text-slate-900">Pharmaciens Assistants (Art. 16) :</strong> assistent le PDT et exercent ses attributions en cas de suppléance.</li>
-                    <li>• <strong className="text-slate-900">Personnel contractuel (Chap. 10) :</strong> encadrement strict pour éviter les accès non autorisés.</li>
+                    <li>• <strong className="text-slate-900">Effectif qualifié et intègre :</strong> en nombre suffisant pour l'activité.</li>
+                    <li>• <strong className="text-slate-900">Organigramme approuvé :</strong> PDT, pharmaciens assistants, AQ, logistique, commercial.</li>
+                    <li>• <strong className="text-slate-900">Règle anti-cumul (Art. 15) :</strong> pas de chevauchement injustifié de responsabilités.</li>
+                    <li>• <strong className="text-slate-900">Pharmaciens Assistants (Art. 16) :</strong> assistent le PDT et exercent la suppléance légale.</li>
                   </ul>
                 </div>
 
-                <div className="glass-card p-4 rounded-2xl">
-                  <h3 className="text-xs font-black uppercase tracking-wider text-emerald-800 mb-2 flex items-center gap-2">
-                    <FileSignature className="w-4 h-4 text-emerald-600" /> Fiches de Postes & Délégations
-                  </h3>
-                  <ul className="space-y-1.5 text-xs text-slate-700">
-                    <li>• Fiches de fonction écrites, signées par l'agent et approuvées par le PDT.</li>
-                    <li>• Dossier de délégation formelle conservé sous l'autorité du PDT.</li>
-                  </ul>
+                {/* Direct Visual from user attachment: Certificat d'habilitation with zoom trigger */}
+                <div 
+                  className="cursor-pointer group relative"
+                  onClick={() => openFullscreen(slide8Cards, 0)}
+                >
+                  <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                    <Maximize2 className="w-3 h-3" /> Plein Écran
+                  </div>
+                  <HabilitationCertificateVisual onZoom={() => openFullscreen(slide8Cards, 0)} />
                 </div>
               </div>
 
-              <div className="lg:col-span-7 glass-card p-4 rounded-2xl">
-                <h3 className="text-xs font-black uppercase tracking-wider text-amber-800 mb-3 flex items-center gap-2">
-                  <Award className="w-4 h-4 text-amber-600" /> Le PDT : Interlocuteur Principal MIP/ANPP & Garant Suprême (Chap. 10)
-                </h3>
-                <div className="grid sm:grid-cols-2 gap-2.5 text-xs">
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">1. Mise en œuvre & maintien du SMQ</p>
-                    <p className="text-slate-600 mt-0.5">Supervise les activités autorisées, le manuel qualité, les SOP et la traçabilité.</p>
+              <div 
+                className="lg:col-span-6 glass-card p-4 rounded-2xl flex flex-col justify-between cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide8Cards, 2)}
+                title="Cliquer pour afficher les 8 attributions en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-amber-600">
+                  <Maximize2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-wider text-amber-800 mb-3 flex items-center gap-2">
+                    <Award className="w-4 h-4 text-amber-600" /> Les 8 Attributions Clés du Pharmacien Directeur Technique (PDT)
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-2 text-xs">
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">1. Maintien du SMQ</p>
+                      <p className="text-[11px] text-slate-600">Supervise manuel qualité, SOP, fiches de poste et traçabilité.</p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">2. Conformité AMM (Art. 18)</p>
+                      <p className="text-[11px] text-slate-600">Vérifie l'enregistrement ANPP ou l'ATU valide à chaque arrivage.</p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">3. Statut des Lots & Retours</p>
+                      <p className="text-[11px] text-slate-600">Autorité exclusive pour libérer ou rejeter un lot.</p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">4. Psychotropes (Décret 19-379)</p>
+                      <p className="text-[11px] text-slate-600">Détient personnellement la clé et le registre coté et paraphé.</p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">5. Qualification Partenaires</p>
+                      <p className="text-[11px] text-slate-600">Valide agréments fournisseurs/clients et sous-traitants (Art. 26).</p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">6. Rappels de Lots & Falsifiés</p>
+                      <p className="text-[11px] text-slate-600">Pilote le rappel d'urgence &lt; 1h et déclare sans délai au MIP/ANPP.</p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">7. Habilitation du Personnel</p>
+                      <p className="text-[11px] text-slate-600">Valide les formations et signe les certificats d'habilitation.</p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <p className="font-bold text-slate-900 text-xs">8. Interlocuteur MIP / ANPP</p>
+                      <p className="text-[11px] text-slate-600">Accueille les inspections inopinées et garantit la conformité légale.</p>
+                    </div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">2. Conformité AMM / Homologation (Art. 18)</p>
-                    <p className="text-slate-600 mt-0.5">Vérifie l'enregistrement officiel ANPP ou l'ATU valide de chaque produit reçu.</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">3. Décision statut des lots & retours</p>
-                    <p className="text-slate-600 mt-0.5">Autorité exclusive pour libérer, mettre en quarantaine ou rejeter un lot.</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">4. Psychotropes (Décret 19-379 & Art. 6)</p>
-                    <p className="text-slate-600 mt-0.5">Gère personnellement avec l'assistant, détient la clé et le registre coté et paraphé.</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">5. Approbation Fournisseurs & Clients</p>
-                    <p className="text-slate-600 mt-0.5">Valide les agréments ministériels (Art. 2 & 4) et approuve les sous-traitants (Art. 26).</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">6. Réclamations, Rappels & Falsifiés</p>
-                    <p className="text-slate-600 mt-0.5">Pilote les rappels de lots d'urgence et veille à la conformité environnementale (Art. 23-25).</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">7. Formation continue & Habilitation</p>
-                    <p className="text-slate-600 mt-0.5">Encadre le plan de formation annuel et délivre les habilitations écrites (Art. 17).</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="font-bold text-slate-900">8. Auto-inspections & Interlocuteur</p>
-                    <p className="text-slate-600 mt-0.5">Organise les audits internes, suit les CAPA et représente l'établissement devant le MIP/ANPP.</p>
-                  </div>
+                </div>
+
+                <div className="mt-3 p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span><strong>Principe légal :</strong> Le PDT est garant devant la loi de la qualité sanitaire des médicaments distribués par SPA ABC MED.</span>
                 </div>
               </div>
             </div>
@@ -814,6 +1100,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
           </div>
         </div>
       );
+    }
 
     // ==========================================
     // SLIDE 9 : MODULE 4 (B) - FORMATION & HYGIÈNE
@@ -832,9 +1119,9 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            {/* Added PPE & Prohibitions Visual Showcase */}
+            {/* Direct Visual from user attachment: Interdictions & Tenues en Entrepôt */}
             <div className="mb-4">
-              <PpeHygieneShowcase />
+              <WarehouseRulesVisual />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-4 text-xs">
@@ -1018,8 +1305,13 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
             </div>
 
             {/* Added FEFO vs FIFO & 4 Pallet Statuses Illustration */}
-            <div className="mb-4">
+            <div className="mb-3">
               <FefoDiagram />
+            </div>
+
+            {/* Direct Visual from user attachment: 5 Colored Status Labels & Pallet Sheet */}
+            <div className="mb-3.5">
+              <ProductStatusLabelsVisual />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-3.5 text-xs">
@@ -1123,7 +1415,54 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
     // ==========================================
     // SLIDE 14 : MODULE 7 (A) - DOCUMENTATION & ALCOA+
     // ==========================================
-    case 14:
+    case 14: {
+      const slide14Cards = [
+        {
+          title: "Pyramide Documentaire Officielle du SMQ",
+          subtitle: "Les 5 niveaux documentaires : MQ ➔ Procédures ➔ Instructions ➔ Formulaires ➔ Enregistrements",
+          badge: "Document Réel d'Entreprise",
+          content: <DocHierarchyPyramid />
+        },
+        {
+          title: "Procédure Officielle Bonnes Pratiques Documentaires",
+          subtitle: "Fac-similé Hydrapharm Group PR.2.AQ.014.1 avec visas de Rédaction, Validation et Approbation",
+          badge: "Document Réel d'Entreprise",
+          content: <HydrapharmProcedureVisual />
+        },
+        {
+          title: "Principes ALCOA+ d'Intégrité des Données",
+          subtitle: "Attributable, Légible, Contemporain, Original, Exact, Complet, Cohérent, Durable et Disponible",
+          badge: "Intégrité des Données",
+          content: <AlcoaBadges />
+        },
+        {
+          title: "Règle Légale d'Approbation & Cycle de Vie (Art. 28)",
+          subtitle: "Exigences du Cahier des charges pour l'élaboration et la révision des documents",
+          badge: "Cahier des Charges Art. 28",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-sky-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-sky-800 flex items-center gap-2">
+                <FolderTree className="w-5 h-5 text-sky-600" /> Règle Légale d'Approbation & Cycle de Vie
+              </h3>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Approbation formelle obligatoire (Art. 28) :</strong>
+                  Toute la documentation (procédures, instructions, contrats) doit être rédigée, vérifiée, approuvée, signée et datée par des personnes formellement autorisées et qualifiées (PDT et responsables de service).
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Cycle de vie maîtrisé :</strong>
+                  1. Rédaction par le métier ➔ 2. Vérification croisée ➔ 3. Approbation PDT ➔ 4. Diffusion contrôlée avec retrait immédiat des versions obsolètes ➔ 5. Revue périodique pour mise à jour continue.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Archivage légal obligatoire :</strong>
+                  Conservation sécurisée au minimum <strong>5 ans</strong> sous format papier ou électronique sécurisé avec Audit Trail.
+                </li>
+              </ul>
+            </div>
+          )
+        }
+      ];
+
       return (
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8">
           <div>
@@ -1137,35 +1476,76 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            {/* Added ALCOA+ Interactive Badges and Live Correction Demo */}
-            <div className="mb-4">
+            {/* Visuals: 5-Level Quality Documentation Pyramid & Hydrapharm Procedure */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-3.5 items-stretch">
+              <div 
+                className="lg:col-span-6 cursor-pointer group relative"
+                onClick={() => openFullscreen(slide14Cards, 0)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
+                </div>
+                <DocHierarchyPyramid onZoom={() => openFullscreen(slide14Cards, 0)} />
+              </div>
+              <div 
+                className="lg:col-span-6 cursor-pointer group relative flex flex-col"
+                onClick={() => openFullscreen(slide14Cards, 1)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
+                </div>
+                <HydrapharmProcedureVisual onZoom={() => openFullscreen(slide14Cards, 1)} />
+              </div>
+            </div>
+
+            {/* ALCOA+ Badges with zoom trigger */}
+            <div 
+              className="mb-3 cursor-pointer group relative"
+              onClick={() => openFullscreen(slide14Cards, 2)}
+            >
+              <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                <Maximize2 className="w-3 h-3" /> Plein Écran
+              </div>
               <AlcoaBadges />
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-4 text-xs">
-              <div className="glass-card p-4 rounded-2xl space-y-2">
+            <div className="grid lg:grid-cols-2 gap-3.5 text-xs">
+              <div 
+                className="glass-card p-3.5 rounded-2xl space-y-1.5 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide14Cards, 3)}
+                title="Cliquer pour afficher en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-sky-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-black uppercase tracking-wider text-sky-800 flex items-center gap-2">
-                  <FolderTree className="w-4 h-4 text-sky-600" /> Hiérarchie Documentaire en 4 Niveaux
+                  <FolderTree className="w-4 h-4 text-sky-600" /> Règle Légale d'Approbation (Art. 28)
                 </h3>
-                <ul className="space-y-1 text-slate-700">
-                  <li><strong>Niveau 1 — Manuel Qualité :</strong> politique générale et engagement de la direction.</li>
-                  <li><strong>Niveau 2 — Procédures Normalisées (SOP) :</strong> QUI fait QUOI, QUAND et COMMENT (réception, stockage, froid, picking, réclamations, rappels).</li>
-                  <li><strong>Niveau 3 — Instructions de travail :</strong> modes d'emploi des équipements (WMS, sondes, alarmes).</li>
-                  <li><strong>Niveau 4 — Enregistrements & Registres :</strong> preuves écrites datées et signées (BL, relevés T°, registres psychotropes).</li>
-                </ul>
+                <p className="text-slate-700 leading-snug">
+                  Toute la documentation (procédures, instructions, contrats) doit être <strong>approuvée, signée et datée</strong> par des personnes autorisées et qualifiées (PDT et responsables de service).
+                </p>
+                <div className="p-1.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-900 font-bold text-[10.5px]">
+                  ✔ Rôle clé : Éviter les erreurs liées à la communication orale et tracer les décisions.
+                </div>
               </div>
 
-              <div className="glass-card p-4 rounded-2xl space-y-2">
+              <div 
+                className="glass-card p-3.5 rounded-2xl space-y-1.5 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide14Cards, 3)}
+                title="Cliquer pour afficher en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-emerald-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-black uppercase tracking-wider text-emerald-800 flex items-center gap-2">
-                  <FileCheck className="w-4 h-4 text-emerald-600" /> Cycle de Vie du Document (Art. 28)
+                  <FileCheck className="w-4 h-4 text-emerald-600" /> Cycle de Vie Maîtrisé du Document (Art. 28)
                 </h3>
-                <p className="text-slate-700 leading-relaxed">
-                  1. <strong>Rédaction</strong> par une personne compétente.<br />
-                  2. <strong>Vérification</strong> par le responsable opérationnel.<br />
-                  3. <strong>Approbation formelle par le PDT</strong> (signature et date obligatoires).<br />
-                  4. <strong>Diffusion contrôlée</strong> avec retrait immédiat des versions obsolètes.<br />
-                  5. <strong>Revue périodique annuelle</strong> pour mise à jour continue.
+                <p className="text-slate-700 leading-snug">
+                  1. <strong>Rédaction</strong> par le métier • 2. <strong>Vérification</strong> croisée • 3. <strong>Approbation PDT</strong> • 4. <strong>Diffusion contrôlée</strong> avec retrait des versions obsolètes • 5. <strong>Revue périodique</strong> pour mise à jour continue.
                 </p>
+                <div className="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 font-bold text-[10.5px]">
+                  ✔ Archivage légal au minimum 5 ans sous format papier ou électronique sécurisé.
+                </div>
               </div>
             </div>
           </div>
@@ -1176,11 +1556,54 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
           </div>
         </div>
       );
+    }
 
     // ==========================================
     // SLIDE 15 : MODULE 7 (B) - CORRECTION & ARCHIVAGE 5 ANS
     // ==========================================
-    case 15:
+    case 15: {
+      const slide15Cards = [
+        {
+          title: "Exemples de Pratiques Documentaires Interdites",
+          subtitle: "Enregistrement Hydrapharm Group ENR.01.[PR.2.AQ.014].1 • Les 9 interdits majeurs",
+          badge: "Document Réel d'Entreprise",
+          content: <HydrapharmForbiddenPracticesVisual />
+        },
+        {
+          title: "Correction des Erreurs & Abréviations Officielles",
+          subtitle: "Procédure Section 5.3 • Règle du trait simple, dater, signer et dictionnaire EE/EC/ED/TE/RC",
+          badge: "Document Réel d'Entreprise",
+          content: <ErrorCorrectionVisual />
+        },
+        {
+          title: "Traçabilité & Archivage Légal Obligatoire (≥ 5 Ans)",
+          subtitle: "Articles 22, 27 et 29 du Cahier des charges des distributeurs de produits pharmaceutiques",
+          badge: "Cahier des Charges",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-sky-200 shadow-sm space-y-4 text-sm">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                <h3 className="text-lg font-black uppercase text-sky-800 flex items-center gap-2">
+                  <Archive className="w-5 h-5 text-sky-600" /> Traçabilité & Archivage Légal Obligatoire
+                </h3>
+                <span className="px-3 py-1 rounded-full bg-sky-100 text-sky-800 font-mono text-xs font-black">
+                  CONSERVATION ≥ 5 ANS
+                </span>
+              </div>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Données Obligatoires à Conserver (Art. 22) :</strong>
+                  Date de chaque opération, dénomination, DCI, forme, dosage, quantité précise, numéro de lot, date de péremption, coordonnées du fournisseur/client et décharges signées.
+                </li>
+                <li className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                  <strong className="text-emerald-900 block text-base mb-1">Sécurisation du Local d'Archives (Art. 27 & 29) :</strong>
+                  Registres cotés et paraphés par le PDT. Local sous clé, propre, sec, ignifuge et protégé des rongeurs.
+                </li>
+              </ul>
+            </div>
+          )
+        }
+      ];
+
       return (
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8">
           <div>
@@ -1190,50 +1613,51 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Correction d'Erreur d'Écriture & Archivage Légal (5 Ans)</h2>
               </div>
               <span className="px-3 py-1 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 text-xs font-bold">
-                Zéro Blanco / Tipp-Ex
+                Zéro Blanco / Tipp-Ex • Intégrité ALCOA+
               </span>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-4 mb-4">
-              <div className="glass-card p-4 rounded-2xl space-y-3">
-                <h3 className="text-xs font-black uppercase tracking-wider text-rose-800 flex items-center gap-2">
-                  <PenTool className="w-4 h-4 text-rose-600" /> Comment Corriger une Erreur d'Écriture ?
-                </h3>
-
-                <div className="grid sm:grid-cols-2 gap-2.5 text-xs">
-                  <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 space-y-1">
-                    <p className="font-bold text-rose-800">FORMELLEMENT INTERDIT :</p>
-                    <ul className="space-y-1 text-slate-700">
-                      <li>✖ Correcteur blanc liquide ou ruban (<strong>blanco / tipp-ex</strong>).</li>
-                      <li>✖ Raturer ou gribouiller (texte d'origine illisible).</li>
-                      <li>✖ Écrire par-dessus un chiffre ou surcharger.</li>
-                      <li>✖ Gommer, gratter avec une lame ou effacer.</li>
-                      <li>✖ Arracher une page d'un registre ou jeter.</li>
-                      <li>✖ Antidater ou postdater une signature.</li>
-                    </ul>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1">
-                    <p className="font-bold text-emerald-800">MÉTHODE CONFORME (4 Étapes) :</p>
-                    <ol className="space-y-1 text-slate-700">
-                      <li><strong>1. Biffer</strong> d'UN SEUL TRAIT HORIZONTAL simple (le texte barré reste lisible).</li>
-                      <li><strong>2. Inscrire</strong> la valeur exacte juste au-dessus ou à côté.</li>
-                      <li><strong>3. Apposer sa SIGNATURE</strong> (ou initiales) et la <strong>DATE DU JOUR</strong>.</li>
-                      <li><strong>4. Mentionner le motif</strong> (ex: « erreur de lecture »).</li>
-                    </ol>
-                  </div>
+            {/* Direct Visuals from user attachments: 9 Forbidden Practices & 5.3 Error Correction Table */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4 items-stretch">
+              <div 
+                className="lg:col-span-6 cursor-pointer group relative flex flex-col"
+                onClick={() => openFullscreen(slide15Cards, 0)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
                 </div>
+                <HydrapharmForbiddenPracticesVisual onZoom={() => openFullscreen(slide15Cards, 0)} />
               </div>
 
-              <div className="glass-card p-4 rounded-2xl space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-black uppercase tracking-wider text-sky-800 flex items-center gap-2">
-                    <Archive className="w-4 h-4 text-sky-600" /> Traçabilité & Archivage : Obligation de 5 Ans (Art. 22 & 29)
-                  </h3>
-                  <span className="px-2.5 py-0.5 rounded bg-sky-100 text-sky-800 font-mono text-xs font-bold">≥ 5 ANS</span>
+              <div 
+                className="lg:col-span-6 cursor-pointer group relative flex flex-col"
+                onClick={() => openFullscreen(slide15Cards, 1)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
                 </div>
+                <ErrorCorrectionVisual onZoom={() => openFullscreen(slide15Cards, 1)} />
+              </div>
+            </div>
 
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
+            {/* Archiving Requirements Card with Zoom */}
+            <div 
+              className="glass-card p-4 rounded-2xl space-y-3 cursor-pointer hover:shadow-md transition relative group"
+              onClick={() => openFullscreen(slide15Cards, 2)}
+              title="Cliquer pour afficher les exigences d'archivage en plein écran"
+            >
+              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-sky-600">
+                <Maximize2 className="w-4 h-4" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs font-black uppercase tracking-wider text-sky-800 flex items-center gap-2">
+                  <Archive className="w-4 h-4 text-sky-600" /> Traçabilité & Archivage : Obligation de 5 Ans (Art. 22 & 29)
+                </h3>
+                <span className="px-2.5 py-0.5 rounded bg-sky-100 text-sky-800 font-mono text-xs font-bold">≥ 5 ANS</span>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <p className="font-bold text-slate-900">Données Obligatoires à Conserver ≥ 5 ans (Art. 22) :</p>
                   <ul className="space-y-1 text-slate-700">
                     <li>• Date exacte de chaque opération de vente ou d'achat.</li>
@@ -1244,7 +1668,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                   </ul>
                 </div>
 
-                <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs space-y-1">
+                <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1">
                   <p className="font-bold text-emerald-800">Sécurisation du Local d'Archives (Art. 27 & 29) :</p>
                   <p className="text-slate-700">
                     Registres cotés et paraphés par le PDT (Art. 29). Local propre, sec, sous clé, protégé contre l'humidité, incendie et rongeurs. Sauvegardes informatiques déportées.
@@ -1260,11 +1684,61 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
           </div>
         </div>
       );
+    }
 
     // ==========================================
     // SLIDE 16 : MODULE 8 (A) - QUALIFICATION & RÉCEPTION
     // ==========================================
-    case 16:
+    case 16: {
+      const slide16Cards = [
+        {
+          title: "Contrat Écrit Obligatoire & Qualification des Tiers",
+          subtitle: "Fac-similé officiel BPDG • Convention écrite obligatoire régissant les responsabilités qualité (Art. 26)",
+          badge: "Document Réel d'Entreprise",
+          content: <ContractHandshakeVisual />
+        },
+        {
+          title: "Qualification & Surveillance des Prestataires",
+          subtitle: "Audit annuel, vérification des agréments et cahier des charges opposable",
+          badge: "Cahier des Charges Art. 26",
+          content: <ContractValidationVisual />
+        },
+        {
+          title: "Les 5 Étapes Obligatoires de Contrôle à la Réception",
+          subtitle: "Article 19 du Cahier des charges : Véhicule, Documents, Intégrité, Chaîne du froid (< 15 min), Statut",
+          badge: "Article 19",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-amber-800 flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-amber-600" /> Les 5 Étapes Obligatoires de Réception (Art. 19)
+              </h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="font-mono font-black text-sky-700 block mb-1">1. VÉHICULE</span>
+                  <p className="text-slate-600 leading-snug">État et propreté du camion, intégrité des scellés/plombage, contrôle du ticket thermique.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="font-mono font-black text-sky-700 block mb-1">2. DOCUMENTS</span>
+                  <p className="text-slate-600 leading-snug">Concordance BL vs Facture vs Bon de Commande. N° lots, dates de péremption, certificat de libération.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="font-mono font-black text-sky-700 block mb-1">3. INTÉGRITÉ</span>
+                  <p className="text-slate-600 leading-snug">Inspection visuelle des cartons (écrasés, traces liquides) + étiquetage légal en <strong>arabe et français</strong>.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-cyan-50 border border-cyan-300">
+                  <span className="font-mono font-black text-cyan-800 block mb-1">4. FROID (&lt; 15 min)</span>
+                  <p className="text-slate-700 leading-snug">Déchargement prioritaire immédiat (&lt; 15 min), lecture des data loggers et transfert direct en chambre froide.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-300">
+                  <span className="font-mono font-black text-emerald-800 block mb-1">5. STATUT & VISA</span>
+                  <p className="text-slate-700 leading-snug">Si conforme : quarantaine WMS avant libération PDT. Si non conforme : refus sur BL, zone rouge, alerte PDT.</p>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      ];
+
       return (
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8">
           <div>
@@ -1278,31 +1752,37 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-3.5 mb-3.5 text-xs">
-              <div className="glass-card p-3.5 rounded-2xl border-l-4 border-l-sky-500">
-                <h3 className="font-extrabold uppercase tracking-wider text-sky-800 mb-1.5">1. Qualification des Fournisseurs (Art. 4)</h3>
-                <p className="text-slate-700 mb-1.5">Approvisionnement <strong>UNIQUEMENT</strong> auprès d'établissements de fabrication ou d'importation agréés par le MIP. <strong>Dossier obligatoire :</strong></p>
-                <ul className="grid sm:grid-cols-2 gap-1 text-slate-700">
-                  <li>• Agrément ministériel certifié.</li>
-                  <li>• Décisions d'AMM / homologations valides.</li>
-                  <li>• Certificat de conformité aux BPF.</li>
-                  <li>• Cahier des charges qualité signé.</li>
-                </ul>
+            {/* Direct Visuals: Real Contract Handshake & Written Validation */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-3.5 items-stretch">
+              <div 
+                className="lg:col-span-6 cursor-pointer group relative flex flex-col"
+                onClick={() => openFullscreen(slide16Cards, 0)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
+                </div>
+                <ContractHandshakeVisual onZoom={() => openFullscreen(slide16Cards, 0)} />
               </div>
 
-              <div className="glass-card p-3.5 rounded-2xl border-l-4 border-l-emerald-500">
-                <h3 className="font-extrabold uppercase tracking-wider text-emerald-800 mb-1.5">2. Qualification des Clients (Art. 2)</h3>
-                <p className="text-slate-700 mb-1.5">Vente <strong>EXCLUSIVEMENT</strong> aux officines et établissements de santé publics/privés agréés. <strong>Dossier obligatoire :</strong></p>
-                <ul className="grid sm:grid-cols-2 gap-1 text-slate-700">
-                  <li>• Arrêté d'ouverture Ministère Santé / DSPW.</li>
-                  <li>• Carte pro & inscription Ordre (CNOP).</li>
-                  <li>• Agrément cliniques / hôpitaux privés.</li>
-                  <li>• <strong className="text-rose-700">Interdiction de livrer à une autre adresse</strong>.</li>
-                </ul>
+              <div 
+                className="lg:col-span-6 cursor-pointer group relative flex flex-col"
+                onClick={() => openFullscreen(slide16Cards, 1)}
+              >
+                <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                  <Maximize2 className="w-3 h-3" /> Plein Écran
+                </div>
+                <ContractValidationVisual />
               </div>
             </div>
 
-            <div className="glass-card p-4 rounded-2xl">
+            <div 
+              className="glass-card p-4 rounded-2xl cursor-pointer hover:shadow-md transition relative group"
+              onClick={() => openFullscreen(slide16Cards, 2)}
+              title="Cliquer pour afficher les 5 étapes en plein écran"
+            >
+              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-amber-600">
+                <Maximize2 className="w-4 h-4" />
+              </div>
               <h3 className="text-xs font-black uppercase tracking-wider text-amber-800 mb-2.5 flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-amber-600" /> Les 5 Étapes Obligatoires de Réception (Art. 19)
               </h3>
@@ -1337,6 +1817,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
           </div>
         </div>
       );
+    }
 
     // ==========================================
     // SLIDE 17 : MODULE 8 (B) - PICKING, COLISAGE & EXPÉDITION
@@ -1437,7 +1918,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Transport sous Température Dirigée & Gestion des Urgences</h2>
               </div>
               <span className="px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">
-                Planification Grand Sud • Chargement LIFO
+                Véhicules Qualifiés • Chargement LIFO
               </span>
             </div>
 
@@ -1479,22 +1960,130 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
     // ==========================================
     // SLIDE 19 : MODULE 10 (A) - RÉCLAMATIONS, RETOURS & RAPPELS
     // ==========================================
-    case 19:
+    case 19: {
+      const slide19Cards = [
+        {
+          title: "Procédure Officielle de Traitement des Réclamations",
+          subtitle: "Fac-similé Hydrapharm Group • Circuit officiel de visa, traçabilité et enquête",
+          badge: "Document Réel d'Entreprise",
+          content: <HydrapharmProcedureVisual />
+        },
+        {
+          title: "1. Traitement des Réclamations Clients (Art. 23)",
+          subtitle: "Distinction réclamation logistique vs qualité produit et délais de traitement",
+          badge: "Cahier des Charges Art. 23",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-sky-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-sky-800 flex items-center gap-2">
+                <MessageSquareWarning className="w-5 h-5 text-sky-600" /> Gestion des Réclamations (Art. 23)
+              </h3>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Désignation formelle :</strong>
+                  Personne responsable désignée sous supervision directe du PDT (Art. 23).
+                </li>
+                <li className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Enregistrement sans délai :</strong>
+                  N° de lot, nature précise du problème, client plaignant et évaluation d'impact.
+                </li>
+                <li className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                  <strong className="text-emerald-900 block text-base mb-1">Distinction obligatoire (Chap. 7) :</strong>
+                  Erreur logistique (manquant, casse, inversion) traitée en interne vs anomalie qualité produit (signalement sans délai au fabricant / titulaire de DE et à l'ANPP).
+                </li>
+              </ul>
+            </div>
+          )
+        },
+        {
+          title: "2. Retours Clients : Les 5 Conditions Strictes (Chap. 8)",
+          subtitle: "Délai interne maîtrisé (ex. 7 jours ABC MED) et 6 preuves documentaires obligatoires pour le froid",
+          badge: "Guide ANPP Chapitre 8",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-amber-800 flex items-center gap-2">
+                <Undo2 className="w-5 h-5 text-amber-600" /> Retours : 5 Conditions Cumulatives
+              </h3>
+              <ol className="space-y-2.5 text-slate-700">
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong>a) Conditionnement d'origine intact :</strong> non ouvert, non souillé, non périmé.
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong>b) Délai acceptable défini en interne :</strong> fixé par la procédure de l'établissement (ex. <strong>7 jours</strong> chez ABC MED, pas de délai rigide de 10 jours).
+                </li>
+                <li className="p-3 rounded-xl bg-cyan-50 border border-cyan-200">
+                  <strong>c) Preuve continue de chaîne du froid :</strong> 6 preuves documentaires exigées (livraison, réception client, maintien thermique, réemballage, collecte et réintégration).
+                </li>
+                <li className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong>d) Décision écrite du Pharmacien DT :</strong> examen obligatoire et visa formel du PDT.
+                </li>
+                <li className="p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+                  <strong>e) Réintégration FEFO :</strong> réintégration en stock vendable selon la date de péremption la plus proche.
+                </li>
+              </ol>
+            </div>
+          )
+        },
+        {
+          title: "3. Rappel de Lots d'Urgence & Mock Recall (Art. 24-25)",
+          subtitle: "Astreinte 24/7, blocage < 1h et notification immédiate MIP/ANPP",
+          badge: "Urgence Sanitaire",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-rose-200 shadow-sm space-y-4 text-sm">
+              <h3 className="text-lg font-black uppercase text-rose-800 flex items-center gap-2">
+                <BellRing className="w-5 h-5 text-rose-600" /> Rappel de Lots d'Urgence
+              </h3>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">Astreinte 24/7 (Chap. 16) :</strong>
+                  Coordonnées d'urgence et dossiers de distribution immédiatement accessibles.
+                </li>
+                <li className="p-3.5 rounded-xl bg-rose-50 border border-rose-200">
+                  <strong className="text-rose-900 block text-base mb-1">Blocage en &lt; 1 heure :</strong>
+                  Verrouillage informatique WMS + étiquetage « PRODUIT RAPPELÉ » en zone sécurisée sous clé.
+                </li>
+                <li className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                  <strong className="text-emerald-900 block text-base mb-1">Simulation annuelle obligatoire :</strong>
+                  Test régulier de réactivité via un <strong>Mock Recall</strong> complet avec rapport de réconciliation.
+                </li>
+              </ul>
+            </div>
+          )
+        }
+      ];
+
       return (
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8">
           <div>
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 10 • Cahier des Charges (Art. 23 à 25) & Guide ANPP Chapitres 7 & 8</span>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Réclamations Clients, Retours (Chap. 8) & Rappels de Lots</h2>
               </div>
               <span className="px-3 py-1 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 text-xs font-bold">
-                Délai Retour (ex. 10 Jours) • Mock Recall Annuel
+                Procédure Retours • Mock Recall Annuel
               </span>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-4 text-xs">
-              <div className="glass-card p-4 rounded-2xl space-y-2">
+            {/* Direct Visual from user attachment: Official Hydrapharm Procedure PRO.M03.A with Zoom */}
+            <div 
+              className="mb-4 cursor-pointer group relative"
+              onClick={() => openFullscreen(slide19Cards, 0)}
+            >
+              <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                <Maximize2 className="w-3 h-3" /> Plein Écran
+              </div>
+              <HydrapharmProcedureVisual onZoom={() => openFullscreen(slide19Cards, 0)} />
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-3.5 text-xs">
+              <div 
+                className="glass-card p-3.5 rounded-2xl space-y-1.5 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide19Cards, 1)}
+                title="Cliquer pour afficher en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-sky-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-black uppercase tracking-wider text-sky-800 flex items-center gap-2">
                   <MessageSquareWarning className="w-4 h-4 text-sky-600" /> 1. Gestion des Réclamations (Art. 23)
                 </h3>
@@ -1509,13 +2098,20 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 </ul>
               </div>
 
-              <div className="glass-card p-4 rounded-2xl space-y-2 border-t-4 border-t-amber-500">
+              <div 
+                className="glass-card p-4 rounded-2xl space-y-2 border-t-4 border-t-amber-500 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide19Cards, 2)}
+                title="Cliquer pour afficher les conditions de retour en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-amber-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-black uppercase tracking-wider text-amber-800 flex items-center gap-2">
                   <Undo2 className="w-4 h-4 text-amber-600" /> 2. Retours : 5 Conditions Strictes (Chap. 8)
                 </h3>
                 <ol className="space-y-1 text-slate-700">
                   <li><strong>a) Conditionnement d'origine intact</strong>, non ouvert, non périmé.</li>
-                  <li><strong>b) Délai acceptable :</strong> ex. <strong>dix (10) jours</strong> maximum.</li>
+                  <li><strong>b) Délai acceptable non imposé par la loi :</strong> fixé par la procédure interne de l'établissement (ex. <strong>7 jours</strong> chez ABC MED — aucun délai légal rigide de 10 jours n'est imposé).</li>
                   <li><strong>c) Preuve de stockage conforme</strong>. Pour le froid, produire les <strong>6 preuves documentaires</strong> (livraison, examen, ouverture, réemballage, collecte, réintégration).</li>
                   <li><strong>d) Examen et décision écrite obligatoire du PDT</strong>.</li>
                   <li><strong>e) Réintégration en stock vendable selon la règle FEFO</strong>.</li>
@@ -1525,7 +2121,14 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 </div>
               </div>
 
-              <div className="glass-card p-4 rounded-2xl space-y-2 border-t-4 border-t-rose-500">
+              <div 
+                className="glass-card p-4 rounded-2xl space-y-2 border-t-4 border-t-rose-500 cursor-pointer hover:shadow-md transition relative group"
+                onClick={() => openFullscreen(slide19Cards, 3)}
+                title="Cliquer pour afficher le rappel de lots en plein écran"
+              >
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-rose-600">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
                 <h3 className="font-black uppercase tracking-wider text-rose-800 flex items-center gap-2">
                   <BellRing className="w-4 h-4 text-rose-600" /> 3. Rappel de Lots d'Urgence (Art. 24-25)
                 </h3>
@@ -1548,11 +2151,58 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
           </div>
         </div>
       );
+    }
 
     // ==========================================
     // SLIDE 20 : MODULE 10 (B) - FALSIFIÉS & DESTRUCTION
     // ==========================================
-    case 20:
+    case 20: {
+      const slide20Cards = [
+        {
+          title: "Cas Réel de Médicament Falsifié : Coartem® 20/120 mg",
+          subtitle: "Fac-similé comparatif terrain • Différences de teinte, typographie et mentions légales",
+          badge: "Document Réel d'Entreprise",
+          content: <CoartemFakeVsRealVisual />
+        },
+        {
+          title: "Notification Officielle de Rappel de Lot d'Urgence",
+          subtitle: "Cahier des charges Art. 24-25 & Guide ANPP Chapitre 8 • Blocage immédiat < 1h",
+          badge: "Alerte Réglementaire",
+          content: <RecallNoticeVisual />
+        },
+        {
+          title: "Procédure Légale de Destruction & PV Officiel (Art. 25)",
+          subtitle: "Incinération contrôlée, PV visé par le PDT et conservation des justificatifs ≥ 5 ans",
+          badge: "Destruction Réglementaire",
+          content: (
+            <div className="bg-white p-6 rounded-2xl border border-rose-200 shadow-sm space-y-4 text-sm">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                <h3 className="text-lg font-black uppercase text-rose-800 flex items-center gap-2">
+                  <ShieldAlert className="w-5 h-5 text-rose-600" /> Procédure de Destruction des Falsifiés & Périmés
+                </h3>
+                <span className="px-3 py-1 rounded-full bg-rose-100 text-rose-800 font-mono text-xs font-black">
+                  ARTICLE 25
+                </span>
+              </div>
+              <ul className="space-y-3 text-slate-700">
+                <li className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">1. Quarantaine de Sécurité :</strong>
+                  Transfert immédiat des produits falsifiés, périmés ou rappelés dans la zone fermée sous clé « REJETÉS / À DÉTRUIRE ».
+                </li>
+                <li className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <strong className="text-slate-900 block text-base mb-1">2. Déclaration Préalable :</strong>
+                  Information formelle du Ministère de l'Industrie Pharmaceutique et de l'ANPP avant toute opération de destruction physique.
+                </li>
+                <li className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                  <strong className="text-emerald-900 block text-base mb-1">3. Procès-Verbal de Destruction :</strong>
+                  Établissement du PV officiel contradictoire signé par le Pharmacien Directeur Technique et le prestataire d'incinération agréé. Archivage légal ≥ 5 ans.
+                </li>
+              </ul>
+            </div>
+          )
+        }
+      ];
+
       return (
         <div className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8">
           <div>
@@ -1566,60 +2216,26 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
               </span>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-4">
-              <div className="glass-card p-4 rounded-2xl space-y-3 border-l-4 border-l-rose-500">
-                <h3 className="text-xs font-black uppercase tracking-wider text-rose-800 flex items-center gap-2">
-                  <ScanEye className="w-4 h-4 text-rose-600" /> Médicaments Falsifiés : Détection & Alerte (Chapitre 8)
-                </h3>
-
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
-                  <p className="font-bold text-slate-900">6 Signes Visuels d'Alerte :</p>
-                  <ul className="space-y-1 text-slate-700">
-                    <li>• Fautes d'orthographe ou de syntaxe sur emballages/notices (arabe ou français).</li>
-                    <li>• Couleurs, logos ou typographies inhabituels, impression médiocre.</li>
-                    <li>• N° de lot ou date de péremption mal gravés ou incohérents.</li>
-                    <li>• Absence de vignette ou sceau d'inviolabilité déchiré/recollé.</li>
-                    <li>• Aspect anormal du contenu (comprimés friables, liquide trouble).</li>
-                    <li>• Prix anormalement bas ou intermédiaire douteux.</li>
-                  </ul>
-                </div>
-
-                <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs space-y-1">
-                  <p className="font-bold text-rose-800">Conduite à Tenir SANS DÉLAI :</p>
-                  <p className="text-slate-700">
-                    1. Arrêt immédiat de la manipulation.<br />
-                    2. Isolement physique sous clé (« PRODUIT SUSPECT DE FALSIFICATION »).<br />
-                    3. Alerte immédiate de l'<strong>ANPP</strong> et du <strong>MIP</strong>.<br />
-                    4. Information du titulaire de l'AMM pour authentification.<br />
-                    5. Interdiction de retourner au fournisseur suspect ou de détruire sans accord des autorités judiciaires.
-                  </p>
-                </div>
+            {/* Direct Visual from user attachment: Real Coartem Comparison with Zoom */}
+            <div 
+              className="mb-4 cursor-pointer group relative"
+              onClick={() => openFullscreen(slide20Cards, 0)}
+            >
+              <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                <Maximize2 className="w-3 h-3" /> Plein Écran
               </div>
+              <CoartemFakeVsRealVisual onZoom={() => openFullscreen(slide20Cards, 0)} />
+            </div>
 
-              <div className="glass-card p-4 rounded-2xl space-y-3 border-l-4 border-l-amber-500">
-                <h3 className="text-xs font-black uppercase tracking-wider text-amber-800 flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-amber-600" /> Destruction des Non-Conformes (Art. 25)
-                </h3>
-
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
-                  <p className="font-bold text-slate-900">Produits Soumis à Destruction :</p>
-                  <ul className="space-y-1 text-slate-700">
-                    <li>• Médicaments et DM périmés, défectueux, avariés ou rappelés non retournables.</li>
-                    <li>• Maintien en zone d'isolement sous clé jusqu'au jour de l'enlèvement.</li>
-                    <li>• Inventaire détaillé : DCI, forme, dosage, n° de lot, quantité unitaire.</li>
-                  </ul>
-                </div>
-
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
-                  <p className="font-bold text-emerald-800">Conformité Environnementale & PV Officiel (Art. 25) :</p>
-                  <ul className="space-y-1 text-slate-700">
-                    <li>• <strong>Déclaration préalable obligatoire au MIP</strong> (Art. 25).</li>
-                    <li>• <strong>Centre d'incinération agréé</strong> par le Ministère de l'Environnement (interdiction de rejet dans les égouts).</li>
-                    <li>• <strong>Procès-Verbal (PV) officiel de destruction :</strong> dressé en présence du PDT et des inspecteurs/autorités compétentes, signé et tamponné.</li>
-                    <li>• <strong>Archivage du PV pendant au moins 5 ans</strong> (Art. 22 & 29).</li>
-                  </ul>
-                </div>
+            {/* Direct Visual: Official Recall Notice with Zoom */}
+            <div 
+              className="mb-2 cursor-pointer group relative"
+              onClick={() => openFullscreen(slide20Cards, 1)}
+            >
+              <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition bg-slate-900/80 text-white px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 shadow">
+                <Maximize2 className="w-3 h-3" /> Plein Écran
               </div>
+              <RecallNoticeVisual />
             </div>
           </div>
 
@@ -1629,6 +2245,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
           </div>
         </div>
       );
+    }
 
     // ==========================================
     // SLIDE 21 : MODULE 11 - DM & PSYCHOTROPES
@@ -1965,11 +2582,19 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-gradient-to-br from-hydra-800 via-hydra-700 to-pharma-700 text-white shadow-lg flex flex-col justify-center space-y-2">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-sky-200">Formateur & Direction Qualité</p>
-                <p className="text-xl font-black text-white">Boussad TAMAZIRT</p>
-                <p className="text-emerald-300 font-semibold text-xs">Responsable Qualité — SPA ABC MED (Groupe Hydrapharm)</p>
-                <p className="text-slate-200 text-xs pt-1 font-mono">Contact : qualite@etablissement.dz</p>
+              <div className="glass-card hydra-brand-card p-5 rounded-2xl bg-gradient-to-br from-hydra-800 via-hydra-700 to-pharma-700 text-white shadow-lg flex flex-col justify-center space-y-3">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-sky-200">Direction Technique & Management Qualité</p>
+                <div className="space-y-2">
+                  <div className="border-b border-white/15 pb-2">
+                    <p className="text-lg font-black text-white">Dr. Asma KETTOU</p>
+                    <p className="text-emerald-300 font-semibold text-xs">Pharmacien Directeur Technique (DT) — SPA ABC MED</p>
+                  </div>
+                  <div>
+                    <p className="text-lg font-black text-white">Boussad TAMAZIRT</p>
+                    <p className="text-sky-200 font-semibold text-xs">Responsable Qualité (RQ) — Formateur</p>
+                  </div>
+                </div>
+                <p className="text-slate-200 text-xs pt-1 font-mono">Contact : abcmed.technique@groupehydrapharm.com</p>
                 <div className="pt-2 border-t border-white/20 text-[11px] text-sky-100">
                   Formation certifiée conforme au Guide ANPP 2026 & Cahier des charges officiel.
                 </div>
@@ -1984,4 +2609,26 @@ export const SlideContent: React.FC<SlideContentProps> = ({ slideId, onGoToSlide
         </div>
       );
   }
+};
+
+  return (
+    <>
+      {renderSlideContent()}
+
+      {/* Universal Fullscreen Modal for interactive card inspection with arrows and escape key */}
+      <CardFullscreenModal
+        isOpen={fullscreenModal.isOpen}
+        onClose={closeFullscreen}
+        title={fullscreenModal.title}
+        subtitle={fullscreenModal.subtitle}
+        badge={fullscreenModal.badge}
+        currentIndex={fullscreenModal.currentIndex}
+        totalCount={fullscreenModal.cards.length}
+        onNext={fullscreenModal.cards.length > 1 ? handleNextCard : undefined}
+        onPrev={fullscreenModal.cards.length > 1 ? handlePrevCard : undefined}
+      >
+        {fullscreenModal.cards[fullscreenModal.currentIndex]?.content}
+      </CardFullscreenModal>
+    </>
+  );
 };

@@ -48,11 +48,64 @@
   border: 1px solid #e2e8f0;
   box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
 }
 
 .glass-card:hover {
-  border-color: #7dd3fc;
-  box-shadow: 0 8px 20px -4px rgba(0, 95, 153, 0.08);
+  border-color: #0077b6;
+  box-shadow: 0 10px 25px -5px rgba(0, 95, 153, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Focused Card Fullscreen Styles for Optimal Readability */
+.focus-card-content {
+  font-size: 1.125rem;
+  line-height: 1.85;
+}
+
+.focus-card-content h3, .focus-card-content h4 {
+  font-size: 1.5rem !important;
+  line-height: 2.1rem !important;
+  font-weight: 800 !important;
+  color: #003559 !important;
+  margin-bottom: 1.25rem !important;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.75rem;
+}
+
+.focus-card-content p, .focus-card-content li {
+  font-size: 1.125rem !important;
+  line-height: 1.9rem !important;
+  color: #1e293b !important;
+}
+
+.focus-card-content strong {
+  color: #002540 !important;
+  font-weight: 800 !important;
+}
+
+.focus-card-content ul, .focus-card-content ol {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
+}
+
+.focus-card-content li {
+  margin-bottom: 0.75rem;
+}
+
+.focus-card-content .grid {
+  gap: 1.25rem !important;
+}
+
+.focus-card-content .p-3, .focus-card-content .p-2\.5 {
+  padding: 1.25rem !important;
+  font-size: 1.05rem !important;
+}
+
+.focus-card-content svg {
+  max-height: 440px !important;
 }
 
 /* Hero Presenter Card in Hydrapharm Deep Navy */
