@@ -169,7 +169,7 @@
                         <span class="font-extrabold text-sm tracking-tight text-hydra-900">SPA ABC MED</span>
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-hydra-50 text-hydra-700 border border-hydra-200 hidden sm:inline-block">Groupe Hydrapharm</span>
                     </div>
-                    <p class="text-[10.5px] text-slate-500">Par <strong class="text-pharma-700 font-semibold">Boussad Tamazirt</strong> — Responsable Qualité</p>
+                    <p class="text-[10.5px] text-slate-500">Par <strong class="text-pharma-700 font-semibold">Boussad Tamazirt</strong> (RQ) • DT : <strong class="text-slate-800 font-semibold">Dr. Asma KETTOU</strong></p>
                 </div>
             </div>
         </div>
@@ -245,7 +245,7 @@
         </div>
 
         <div class="hidden sm:flex items-center gap-2 text-xs text-slate-600">
-            <span class="font-semibold text-slate-800">Boussad Tamazirt • RQ</span>
+            <span class="font-semibold text-slate-800">Dr. Asma KETTOU (DT) • Boussad Tamazirt (RQ)</span>
             <span class="text-slate-300">|</span>
             <span class="text-hydra-700 font-extrabold">SPA ABC MED (Groupe Hydrapharm)</span>
         </div>
@@ -270,7 +270,7 @@
     <div id="speaker-modal" class="fixed bottom-16 right-6 w-96 max-w-[90vw] bg-white rounded-2xl p-4 shadow-2xl border-2 border-amber-300 z-40 hidden">
         <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
             <span class="text-xs font-black uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
-                <i data-lucide="mic" class="w-3.5 h-3.5 text-amber-600"></i> Notes Formateur — Boussad Tamazirt
+                <i data-lucide="mic" class="w-3.5 h-3.5 text-amber-600"></i> Guide Formateur & Timing 2h
             </span>
             <button onclick="toggleSpeakerNotes()" class="text-slate-400 hover:text-slate-800"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
@@ -512,7 +512,7 @@
                 module: "Module 13 : Synthèse Managériale",
                 pacing: "01:56 – 01:58 (2 min)",
                 title: "Les 10 Commandements d'Or des BPDG en Algérie",
-                notes: "Synthèse exécutive par Boussad Tamazirt : les 10 Commandements d'Or des BPDG en Algérie à afficher et appliquer chaque jour chez SPA ABC MED."
+                notes: "Synthèse exécutive par l\'équipe Qualité & Direction Technique (Dr. Asma KETTOU DT, Boussad Tamazirt RQ) : les 10 Commandements d\'Or des BPDG en Algérie à afficher et appliquer chaque jour chez SPA ABC MED."
             },
             {
                 id: 25,
@@ -554,7 +554,7 @@
                 box.innerHTML = `Lot <span class="bg-slate-300 text-slate-300 px-2 rounded select-none">AB123</span> <strong>AC124</strong> — <span class="text-rose-700 font-bold">[REJETÉ EN INSPECTION : Usage de Blanco / Sans signature ni date]</span>`;
             } else {
                 box.className = 'p-3 rounded-lg bg-emerald-50 font-mono text-xs text-emerald-800 border border-emerald-300';
-                box.innerHTML = `Lot <span class="line-through text-rose-600">AB123</span> <strong class="text-slate-900">AC124</strong> — <em>(Visa PDT, 15/10/2026 - Erreur de lecture)</em>`;
+                box.innerHTML = `Lot <span class="line-through text-rose-600">AB123</span> <strong class="text-slate-900">AC124</strong> — <em>(Visa Pharmacien DT Dr. Asma KETTOU, 15/10/2026 - Motif : Erreur de frappe)</em>`;
             }
         };
 
@@ -644,8 +644,16 @@
                                     <p class="text-[11px] font-bold uppercase tracking-widest brand-sky">Animation & Direction Qualité</p>
                                     <span class="px-2.5 py-0.5 rounded-full bg-white/15 brand-white text-[10px] font-bold uppercase tracking-wider">Groupe Hydrapharm</span>
                                 </div>
-                                <h2 class="text-2xl font-black brand-white">Boussad TAMAZIRT</h2>
-                                <p class="text-sm font-bold brand-emerald mt-0.5">Responsable Qualité</p>
+                                <div class="space-y-2">
+                                    <div>
+                                        <h2 class="text-xl font-black brand-white">Dr. Asma KETTOU</h2>
+                                        <p class="text-xs font-bold brand-emerald">Pharmacien Directeur Technique (DT)</p>
+                                    </div>
+                                    <div class="pt-2 border-t border-white/15">
+                                        <h3 class="text-lg font-black brand-white">Boussad TAMAZIRT</h3>
+                                        <p class="text-xs font-bold brand-sky">Responsable Qualité (RQ) — Formateur</p>
+                                    </div>
+                                </div>
                                 <div class="mt-4 pt-4 border-t border-white/15 flex items-center justify-between">
                                     <div>
                                         <p class="text-xs font-extrabold brand-white">SPA ABC MED</p>
@@ -672,7 +680,200 @@
                     </div>
                 </div>
                 `;
-            } else if (id === 4) {
+                        } else if (id === 2) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Introduction Générale</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Objectifs Pédagogiques & Architecture (Format 2 Heures)</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
+                                4 Compétences Clés • 13 Modules
+                            </span>
+                        </div>
+
+                        <!-- 10 Chapters Visual -->
+                        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm mb-4">
+                            <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                                <span class="text-xs font-black uppercase text-hydra-900 flex items-center gap-2">
+                                    <i data-lucide="book-marked" class="w-4 h-4 text-hydra-600"></i> Les 10 Chapitres Fondamentaux du Guide ANPP 2026
+                                </span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Référentiel National</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">1. SMQ</strong>Gestion qualité</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">2. Personnel</strong>PDT, habilitations</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">3. Locaux</strong>Zonage, cartographie</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">4. Documentation</strong>Procédures, ALCOA+</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">5. Opérations</strong>Réception, FEFO</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">6. Réclamations</strong>Retours, rappels</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">7. Falsifiés</strong>Détection & alerte</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">8. Transport</strong>Froid, PCA urgences</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">9. Sous-traitance</strong>Cahier des charges</div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200"><strong class="text-hydra-800 block text-[11px]">10. Auto-inspection</strong>Audits semestriels</div>
+                            </div>
+                        </div>
+
+                        <!-- 3 Métiers Transversal Synthesis -->
+                        <div class="p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-hydra-900 to-slate-900 text-white shadow-sm mb-4">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-emerald-400 block mb-2">
+                                🎯 Boussole Transversale par Métier : Ce que CHAQUE structure doit retenir
+                            </span>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                                <div class="p-3 rounded-xl bg-white/10 border border-white/10">
+                                    <div class="font-extrabold text-cyan-300 flex items-center gap-1.5 mb-1">
+                                        <i data-lucide="package" class="w-4 h-4"></i> Entrepôt & Logistique
+                                    </div>
+                                    <p class="text-[11px] text-slate-200 leading-relaxed">
+                                        Hygiène et EPI stricts, interdictions (fumer, manger, mâcher), surélévation sur palettes, rotation FEFO, étiquettes statuts, pack-out froid sans contact et signalement immédiat de toute déviation.
+                                    </p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white/10 border border-white/10">
+                                    <div class="font-extrabold text-emerald-300 flex items-center gap-1.5 mb-1">
+                                        <i data-lucide="briefcase" class="w-4 h-4"></i> Commercial & ADV
+                                    </div>
+                                    <p class="text-[11px] text-slate-200 leading-relaxed">
+                                        Vente exclusive aux clients officiellement agréés (officines, cliniques), respect du stock permanent de 30 jours (2/3 nomenclature), qualification des commandes et respect du délai contractuel fixé pour les retours (ex. 7 jours chez ABC MED).
+                                    </p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white/10 border border-white/10">
+                                    <div class="font-extrabold text-amber-300 flex items-center gap-1.5 mb-1">
+                                        <i data-lucide="building" class="w-4 h-4"></i> Administration & Supports
+                                    </div>
+                                    <p class="text-[11px] text-slate-200 leading-relaxed">
+                                        Certificats d'habilitation au poste signés par le DT Dr. Asma KETTOU, fiches de poste, écriture au stylo bleu indélébile sans blanco, archivage légal 5 ans, contrats écrits des sous-traitants et intégrité WMS.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4 Core Skills -->
+                        <div class="grid sm:grid-cols-4 gap-3">
+                            <div class="glass-card p-3.5 rounded-2xl">
+                                <span class="text-xs font-bold text-hydra-700 uppercase block mb-1">1. Réglementation</span>
+                                <p class="text-xs text-slate-600">Maîtriser le Cahier des charges MIP et le Guide ANPP 2026 sans ambiguïté.</p>
+                            </div>
+                            <div class="glass-card p-3.5 rounded-2xl">
+                                <span class="text-xs font-bold text-emerald-700 uppercase block mb-1">2. Bonnes Pratiques</span>
+                                <p class="text-xs text-slate-600">Appliquer les règles FEFO, zonage, étiquetage de statut et ALCOA+.</p>
+                            </div>
+                            <div class="glass-card p-3.5 rounded-2xl">
+                                <span class="text-xs font-bold text-sky-700 uppercase block mb-1">3. Chaîne du Froid</span>
+                                <p class="text-xs text-slate-600">Sécuriser le 2-8°C, gérer les excursions thermiques et qualifier les véhicules.</p>
+                            </div>
+                            <div class="glass-card p-3.5 rounded-2xl">
+                                <span class="text-xs font-bold text-amber-700 uppercase block mb-1">4. Vigilance & Alerte</span>
+                                <p class="text-xs text-slate-600">Détecter les falsifiés, gérer les rappels urgents et traiter les réclamations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 0/13 • Cadrage Pédagogique (2 Heures)</span>
+                        <span class="text-emerald-700 font-semibold">SPA ABC MED • Direction Qualité</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 3) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 1 • Fondements & Santé Publique</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Notions sur le Médicament & Pourquoi les BPDG sont Vitales</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 text-xs font-bold">
+                                Enjeu Vital de Santé Publique
+                            </span>
+                        </div>
+
+                        <!-- Composition & Roles -->
+                        <div class="grid md:grid-cols-12 gap-4 mb-4">
+                            <div class="md:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 space-y-3 shadow-xs">
+                                <h4 class="text-xs font-black uppercase text-slate-800 flex items-center gap-1.5 pb-2 border-b border-slate-200">
+                                    <i data-lucide="pill" class="w-4 h-4 text-sky-600"></i> De Quoi est Composé un Médicament ?
+                                </h4>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-950 flex items-center justify-between">
+                                        <div>
+                                            <span class="font-extrabold block text-xs">1. Substance(s) Active(s) (PAP)</span>
+                                            <span class="text-[11px] text-sky-800">Molécule qui produit l'effet thérapeutique (guérir, soigner).</span>
+                                        </div>
+                                        <span class="text-[10px] font-bold bg-sky-200 text-sky-900 px-2 py-0.5 rounded shrink-0">Action</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-950 flex items-center justify-between">
+                                        <div>
+                                            <span class="font-extrabold block text-xs">2. Excipients</span>
+                                            <span class="text-[11px] text-emerald-800">Substances inertes assurant forme, goût, conservation et assimilation.</span>
+                                        </div>
+                                        <span class="text-[10px] font-bold bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded shrink-0">Support</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-950 flex items-center justify-between">
+                                        <div>
+                                            <span class="font-extrabold block text-xs">3. Articles de Conditionnement</span>
+                                            <span class="text-[11px] text-amber-800">Primaire (blister, flacon) & Secondaire (boîte carton avec étiquetage légal).</span>
+                                        </div>
+                                        <span class="text-[10px] font-bold bg-amber-200 text-amber-900 px-2 py-0.5 rounded shrink-0">Protection</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-6 bg-gradient-to-br from-slate-900 to-hydra-950 text-white rounded-2xl p-4 space-y-3 shadow-xs">
+                                <h4 class="text-xs font-black uppercase text-amber-300 flex items-center gap-1.5 pb-2 border-b border-white/20">
+                                    <i data-lucide="heart-pulse" class="w-4 h-4 text-amber-300"></i> Quel est le Rôle d'un Médicament ? (4 Finalités)
+                                </h4>
+                                <div class="grid grid-cols-2 gap-2 text-xs">
+                                    <div class="p-2.5 rounded-lg bg-white/10 border border-white/10">
+                                        <span class="text-amber-300 font-extrabold block text-xs">✔ Soigner</span>
+                                        <p class="text-[10.5px] text-slate-200 mt-0.5">Guérir une infection ou traiter une maladie.</p>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-white/10 border border-white/10">
+                                        <span class="text-cyan-300 font-extrabold block text-xs">✔ Soulager</span>
+                                        <p class="text-[10.5px] text-slate-200 mt-0.5">Atténuer la douleur, la fièvre ou les symptômes.</p>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-white/10 border border-white/10">
+                                        <span class="text-emerald-300 font-extrabold block text-xs">✔ Prévenir</span>
+                                        <p class="text-[10.5px] text-slate-200 mt-0.5">Vaccins, prophylaxie contre les épidémies.</p>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-white/10 border border-white/10">
+                                        <span class="text-purple-300 font-extrabold block text-xs">✔ Diagnostiquer</span>
+                                        <p class="text-[10.5px] text-slate-200 mt-0.5">Produits de contraste en radiologie et imagerie.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Historical Catastrophes -->
+                        <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-200 shadow-sm">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-600"></i>
+                                <h4 class="text-xs font-black uppercase text-rose-900 tracking-wider">Pourquoi les BPDG sont Vitales : 3 Catastrophes Historiques Réelles</h4>
+                            </div>
+                            <div class="grid sm:grid-cols-3 gap-3 text-xs">
+                                <div class="p-3 rounded-xl bg-white border border-rose-200">
+                                    <span class="font-extrabold text-rose-800 block text-xs">USA 1970 — Solutions Contaminées</span>
+                                    <p class="text-slate-600 mt-1">Défaut de fermeture de flacons perfusables : contamination bactérienne massive causant 40 décès. Déclencheur des contrôles d'intégrité BPD.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-rose-200">
+                                    <span class="font-extrabold text-rose-800 block text-xs">France 1972 — Talc Morhange</span>
+                                    <p class="text-slate-600 mt-1">Erreur de dosage de l'hexachlorophène par mauvaise documentation et absence de double contrôle : 36 nourrissons décédés.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-rose-200">
+                                    <span class="font-extrabold text-rose-800 block text-xs">Allemagne 1999 — Confusion KCl / NaCl</span>
+                                    <p class="text-slate-600 mt-1">Ampoules de KCl stockées sans ségrégation visuelle près de NaCl : injection létale directe. À l'origine du zonage et étiquetage strict.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 1/13 • Fondements & Santé Publique</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+} else if (id === 4) {
                 return `
                 <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
                     <div>
@@ -780,7 +981,354 @@
                     </div>
                 </div>
                 `;
-            } else if (id === 10) {
+                        } else if (id === 5) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 2 • Cahier des Charges (Art. 2, 4, 18, 22, 25, 33-35)</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Obligations Générales du Grossiste Répartiteur & Déclarations MIP</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
+                                Service Public & Transparence
+                            </span>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-3.5 mb-4">
+                            <div class="glass-card p-4 rounded-2xl bg-sky-50 border border-sky-200 flex items-center gap-4 shadow-xs">
+                                <div class="text-3xl font-black text-sky-700 font-mono">2/3</div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-900 uppercase">Nomenclature Nationale (Art. 4 & 18)</p>
+                                    <p class="text-xs text-slate-600">Détenir et distribuer au moins deux tiers (2/3) des produits enregistrés en Algérie.</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-4 shadow-xs">
+                                <div class="text-3xl font-black text-emerald-700 font-mono">30 J</div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-900 uppercase">Stock Permanent Minimum (Art. 18)</p>
+                                    <p class="text-xs text-slate-600">Couvrir en permanence au moins 30 jours de vente (médicaments essentiels & DM).</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center gap-4 shadow-xs">
+                                <div class="p-2.5 rounded-xl bg-amber-100 text-amber-800"><i data-lucide="building-2" class="w-6 h-6"></i></div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-900 uppercase">Clients Autorisés (Art. 2)</p>
+                                    <p class="text-xs text-slate-600">Exclusivement Officines & Établissements de santé publics/privés agréés.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-5 glass-card p-4 rounded-2xl space-y-2.5">
+                                <h3 class="text-xs font-black uppercase tracking-wider text-sky-800 flex items-center gap-2">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-sky-600"></i> Règles d'Approvisionnement & Clientèle
+                                </h3>
+                                <ul class="space-y-1.5 text-xs text-slate-700">
+                                    <li>• <strong class="text-slate-900">Objectif de santé publique :</strong> prévenir les pénuries et assurer l'égal accès des citoyens aux thérapeutiques.</li>
+                                    <li>• <strong class="text-slate-900">Approvisionnement exclusif :</strong> uniquement auprès de fabricants ou importateurs agréés par le Ministère.</li>
+                                    <li>• <strong class="text-slate-900">Produits hospitaliers :</strong> distribution réservée aux hôpitaux pour les produits à affectation hospitalière.</li>
+                                    <li>• <strong class="text-slate-900">Vente inter-grossistes (Art. 2) :</strong> autorisée <strong>UNIQUEMENT</strong> dans le cadre d'une convention formelle avec un établissement de fabrication agréé.</li>
+                                    <li class="p-2 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 font-semibold">
+                                        ✖ Interdiction formelle de vente directe au public ou à des structures non médicales.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="lg:col-span-7 grid sm:grid-cols-2 gap-3">
+                                <div class="glass-card p-3.5 rounded-2xl border-l-4 border-l-sky-500">
+                                    <span class="text-[11px] font-bold text-sky-700 uppercase">1. Déclaration des Stocks (Art. 34)</span>
+                                    <p class="text-xs text-slate-600 mt-1">Transmettre <strong class="text-slate-900">MENSUELLEMENT</strong> (et au besoin hebdomadairement) l'état des stocks disponibles des médicaments et DM essentiels par voie électronique sécurisée au MIP.</p>
+                                </div>
+                                <div class="glass-card p-3.5 rounded-2xl border-l-4 border-l-amber-500">
+                                    <span class="text-[11px] font-bold text-amber-700 uppercase">2. Déclaration des Périmés (Art. 34)</span>
+                                    <p class="text-xs text-slate-600 mt-1">Transmettre <strong class="text-slate-900">TRIMESTRIELLEMENT</strong> la liste nominative et les quantités précises des produits périmés. Suivi rigoureux en zone de rejet sécurisée jusqu'à destruction.</p>
+                                </div>
+                                <div class="glass-card p-3.5 rounded-2xl border-l-4 border-l-emerald-500">
+                                    <span class="text-[11px] font-bold text-emerald-700 uppercase">3. Inventaire Annuel & Bilan (Art. 22 & 35)</span>
+                                    <p class="text-xs text-slate-600 mt-1">Transmettre chaque <strong class="text-slate-900">fin d'année</strong> l'état d'inventaire complet + déposer le <strong class="text-slate-900">bilan d'activité annuel</strong> selon le canevas MIP. Archivage <strong class="text-slate-900">≥ 5 ans</strong>.</p>
+                                </div>
+                                <div class="glass-card p-3.5 rounded-2xl border-l-4 border-l-rose-500">
+                                    <span class="text-[11px] font-bold text-rose-700 uppercase">4. Déclarations d'Urgence (Art. 25 & 33)</span>
+                                    <p class="text-xs text-slate-600 mt-1">Déclarer <strong class="text-slate-900">SANS DÉLAI</strong> au MIP tout rappel de lot, retrait ou destruction. Obligation de distribution sur <strong class="text-slate-900">réquisition ministérielle</strong> en cas d'urgence sanitaire (Art. 33).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 2/13 • Cahier des Charges & Déclarations Officielles</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 6) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 3 • Système Qualité (Chapitre 5 Guide ANPP)</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Système de Management de la Qualité (SMQ) & 8 Garanties</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-hydra-50 text-hydra-800 border border-hydra-200 text-xs font-bold">
+                                8 Garanties Réglementaires
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-5 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase tracking-wider text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="layers" class="w-4 h-4 text-hydra-600"></i> Architecture du SMQ selon l'ANPP
+                                </h3>
+                                <p class="text-xs text-slate-600">Le distributeur doit maintenir un SMQ formel comprenant une politique qualité claire, un manuel qualité approuvé par le Pharmacien DT, et des procédures opératoires standard (SOP).</p>
+                                <div class="p-3 rounded-xl bg-sky-50 border border-sky-200 text-xs text-sky-950 space-y-1">
+                                    <strong class="block text-sky-900">Rôle central du SMQ :</strong>
+                                    Garantir que les produits conservent leur sécurité, efficacité et conformité légale de leur réception chez SPA ABC MED jusqu'à leur livraison à l'officine.
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-7 grid sm:grid-cols-2 gap-2.5">
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">1. Fournisseurs Agréés</span>
+                                    <p class="text-[11px] text-slate-600">Produits acquis uniquement auprès de fabricants/importateurs agréés.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">2. Clients Qualifiés</span>
+                                    <p class="text-[11px] text-slate-600">Distribution exclusive aux pharmacies d'officine et cliniques autorisées.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">3. Traçabilité Totale</span>
+                                    <p class="text-[11px] text-slate-600">Localisation précise de chaque numéro de lot en moins d'une heure.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">4. Intégrité & Froid</span>
+                                    <p class="text-[11px] text-slate-600">Conservation sous température dirigée sans rupture de la chaîne du froid.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">5. Zéro Contamination</span>
+                                    <p class="text-[11px] text-slate-600">Prévention des contaminations croisées, déversements et bris d'emballage.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">6. Détection Falsifiés</span>
+                                    <p class="text-[11px] text-slate-600">Identification des produits suspects et blocage immédiat sous clé.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">7. Rappels Réactifs</span>
+                                    <p class="text-[11px] text-slate-600">Capacité de rappel de lot d'urgence immédiat avec test annuel obligatoire.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                                    <span class="text-[11px] font-bold text-hydra-800 uppercase block mb-0.5">8. Enregistrements ALCOA+</span>
+                                    <p class="text-[11px] text-slate-600">Archivage pendant au moins 5 ans de tous les bons, registres et relevés.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 3/13 • Système Qualité & Garanties BPDG</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 7) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 3 • Déviations & Analyse de Risques</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Gestion des Déviations, Processus CAPA & Risques (ICH Q9)</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">
+                                Formule : Criticité = G × P × D
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-7 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-slate-900 flex items-center gap-2">
+                                    <i data-lucide="git-commit" class="w-4 h-4 text-amber-600"></i> Les 5 Étapes du Traitement d'une Déviation
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">1</span>
+                                        <div><strong class="text-slate-900 block">Détection & Signalement Immédiat :</strong> Tout écart par rapport à une SOP ou consigne est consigné sur fiche d'incident sous 2h.</div>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">2</span>
+                                        <div><strong class="text-slate-900 block">Mesures Conservatoires Immédiates :</strong> Mise en quarantaine physique et informatique immédiate des lots potentiellement affectés.</div>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">3</span>
+                                        <div><strong class="text-slate-900 block">Recherche de la Cause Racine (Ishikawa 5M) :</strong> Analyse systématique : Matière, Matériel, Méthode, Milieu, Main d'œuvre.</div>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">4</span>
+                                        <div><strong class="text-slate-900 block">Plan d'Action Corrective & Préventive (CAPA) :</strong> Corriger le défaut immédiat et modifier le processus pour empêcher toute récidive.</div>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0">5</span>
+                                        <div><strong class="text-emerald-950 block">Clôture Exclusive par le Pharmacien DT :</strong> Seul le Pharmacien Directeur Technique (Dr. Asma KETTOU) est habilité à statuer et clôturer la déviation.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-5 space-y-3">
+                                <div class="glass-card p-4 rounded-2xl bg-amber-50/70 border border-amber-200">
+                                    <span class="text-xs font-black uppercase text-amber-900 block mb-1">Matrice de Risque ICH Q9</span>
+                                    <p class="text-xs text-slate-700 mb-2">Calcul de l'Indice de Priorité du Risque :</p>
+                                    <div class="p-3 bg-white rounded-xl border border-amber-300 text-center font-mono font-bold text-sm text-amber-900">
+                                        $$C = G \times P \times D$$
+                                    </div>
+                                    <div class="mt-2 grid grid-cols-3 gap-1 text-[10px] text-center">
+                                        <div class="p-1 rounded bg-amber-100/70"><strong>G</strong> : Gravité</div>
+                                        <div class="p-1 rounded bg-amber-100/70"><strong>P</strong> : Probabilité</div>
+                                        <div class="p-1 rounded bg-amber-100/70"><strong>D</strong> : Détectabilité</div>
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-4 rounded-2xl">
+                                    <span class="text-xs font-black uppercase text-slate-800 block mb-1">Distinction CAPA Fondamentale</span>
+                                    <ul class="text-xs text-slate-600 space-y-1.5">
+                                        <li>• <strong class="text-slate-900">Action Corrective :</strong> élimine la cause d'une non-conformité détectée pour éviter sa réapparition.</li>
+                                        <li>• <strong class="text-slate-900">Action Préventive :</strong> élimine la cause d'une non-conformité potentielle avant qu'elle ne survienne.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 3/13 • Déviations & Analyse ICH Q9</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 8) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 4 • Personnel & Responsabilités (Art. 15–16)</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Organisation du Personnel & Missions du Pharmacien Directeur Technique (PDT)</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-hydra-50 text-hydra-800 border border-hydra-200 text-xs font-bold">
+                                Interlocuteur Principal MIP / ANPP
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <!-- Facsimile Certificat Habilitation -->
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl border-2 border-hydra-200 shadow-sm space-y-3">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                                    <span class="text-xs font-black uppercase text-hydra-800 flex items-center gap-1.5">
+                                        <i data-lucide="award" class="w-4 h-4 text-pharma-600"></i> Certificat d'Habilitation au Poste (Fac-similé Officiel)
+                                    </span>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Art. 17 Validé</span>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-300 font-mono text-xs space-y-2 text-slate-800">
+                                    <div class="text-center font-bold text-slate-900 border-b border-slate-300 pb-1.5">
+                                        SPA ABC MED — DIRECTION TECHNIQUE PHARMACEUTIQUE<br>
+                                        <span class="text-[11px] font-normal text-slate-600">CERTIFICAT D'HABILITATION OPÉRATIONNELLE BPDG</span>
+                                    </div>
+                                    <div class="text-[11px] space-y-1">
+                                        <div>Agent : <strong class="text-slate-950 font-sans">Opérateur Réception & Préparation</strong> (Matricule MED-084)</div>
+                                        <div>Poste : <strong class="text-slate-950 font-sans">Gestionnaire de Stock & Chaîne du Froid</strong></div>
+                                        <div>Date de Formation : <span class="text-slate-700">19/10/2026</span> • Note Évaluation : <strong class="text-emerald-700">18.5/20</strong></div>
+                                    </div>
+                                    <div class="pt-2 border-t border-slate-300 text-[11px] space-y-1 bg-white p-2 rounded border border-slate-200">
+                                        <div class="font-bold text-slate-900">Approbation Réglementaire Obligatoire :</div>
+                                        <div>Pharmacien Directeur Technique : <strong class="text-hydra-900 font-sans">Dr. Asma KETTOU (Pharmacien DT)</strong></div>
+                                        <div>Statut : <span class="text-emerald-700 font-bold font-sans">✔ Habilité Sans Réserve — Visa & Paraphe Apposés</span></div>
+                                    </div>
+                                </div>
+                                <p class="text-[11px] text-slate-500 italic">Tout membre du personnel manipulant des produits doit détenir ce certificat signé par le PDT avant toute opération.</p>
+                            </div>
+
+                            <!-- 8 Attributions Clés -->
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                                    <h3 class="text-xs font-black uppercase text-amber-800 flex items-center gap-2">
+                                        <i data-lucide="shield" class="w-4 h-4 text-amber-600"></i> Les 8 Attributions Réglaliennes du PDT
+                                    </h3>
+                                    <span class="text-[10px] font-bold text-slate-500">Dr. Asma KETTOU (DT)</span>
+                                </div>
+                                <div class="grid sm:grid-cols-2 gap-2 text-xs">
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">1. Maintien SMQ</strong>Supervise le manuel et les SOP.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">2. Conformité AMM</strong>Vérifie l'enregistrement officiel ANPP.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">3. Statut des Lots</strong>Autorité exclusive pour libérer ou rejeter.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">4. Psychotropes</strong>Clé personnelle de l'armoire blindée.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">5. Partenaires</strong>Valide les agréments des fournisseurs.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">6. Rappels Urgents</strong>Pilote les retraits de lots d'urgence.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">7. Habilitations</strong>Signe les certificats du personnel.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">8. MIP / ANPP</strong>Interlocuteur officiel des inspecteurs.</div>
+                                </div>
+                                <div class="p-2 rounded-lg bg-amber-50 text-[11px] text-amber-900 font-semibold border border-amber-200">
+                                    Règle d'anti-cumul (Art. 15) : Le PDT se consacre exclusivement à son mandat technique pharmaceutique.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 4/13 • Personnel & Pharmacien DT</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 9) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 4 • Formation & Hygiène (Art. 8 & 17)</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Formation Continue, Habilitation & Hygiène / Sécurité en Entrepôt</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
+                                Habilitation Écrite & EPI Obligatoires
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="graduation-cap" class="w-4 h-4 text-hydra-600"></i> Les 4 Preuves Documentaires de Formation
+                                </h3>
+                                <p class="text-xs text-slate-600">L'inspection exige la démonstration formelle de la formation initiale et périodique de chaque employé :</p>
+                                <ul class="space-y-2 text-xs text-slate-700">
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">• <strong class="text-slate-900">1. Programme Annuel Validé :</strong> Calendrier prévisionnel approuvé par le Pharmacien DT.</li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">• <strong class="text-slate-900">2. Feuille d'Émargement :</strong> Datée, contresignée individuellement par chaque participant.</li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">• <strong class="text-slate-900">3. Évaluation Écrite des Connaissances :</strong> Test QCM prouvant l'assimilation opérationnelle.</li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">• <strong class="text-slate-900">4. Certificat Individuel au Dossier :</strong> Conservé au dossier administratif du personnel.</li>
+                                </ul>
+                            </div>
+
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-rose-800 flex items-center gap-2">
+                                    <i data-lucide="shield-alert" class="w-4 h-4 text-rose-600"></i> Hygiène Stricte & Équipements de Protection (EPI)
+                                </h3>
+                                <div class="grid sm:grid-cols-2 gap-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-950">
+                                        <strong class="block text-rose-900 mb-1">Interdictions Absolues :</strong>
+                                        Interdit de fumer, manger, boire ou mâcher du chewing-gum dans toute zone de stockage.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
+                                        <strong class="block text-emerald-900 mb-1">Tenues & EPI Dédiés :</strong>
+                                        Blouse propre, chaussures de sécurité coquées, gants de manutention et gilet fluorescent.
+                                    </div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
+                                    <strong>Gestion des Blessures & Maladie :</strong> Tout opérateur présentant une plaie cutanée ouverte ou maladie contagieuse doit la déclarer immédiatement et ne peut manipuler des produits ouverts.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 4/13 • Formation Continue & Hygiène</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+} else if (id === 10) {
                 return `
                 <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
                     <div>
@@ -839,7 +1387,137 @@
                     </div>
                 </div>
                 `;
-            } else if (id === 13) {
+                        } else if (id === 11) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 5 • Environnement & Traçabilité</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Environnement, Mapping Thermique 24/7 & Système Informatique</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
+                                Mapping Été/Hiver 7 Jours • Audit Trail
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="thermometer" class="w-4 h-4 text-hydra-600"></i> Mapping Thermique 3D & Contrôles d'Ambiance
+                                </h3>
+                                <ul class="space-y-2 text-xs text-slate-700">
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Cartographie Saisonnière Été/Hiver :</strong>
+                                        Enregistrement thermique continu sur au moins <strong class="text-hydra-800">7 jours consécutifs</strong> lors des pics de chaleur et de froid, pour identifier les points critiques (chauds et froids).
+                                    </li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Maîtrise de l'Hygrométrie :</strong>
+                                        Humidité relative maintenue à <strong class="text-hydra-800">≤ 60% HR</strong> pour protéger les comprimés, gélules et formes sèches de l'altération.
+                                    </li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Lutte Antiparasitaire (Pest Control) :</strong>
+                                        Plan de dératisation/désinsectisation avec boîtes d'appâts scellées numérotées. <strong class="text-rose-700">Interdiction formelle d'appâts toxiques ouverts</strong> à proximité des stocks.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-emerald-800 flex items-center gap-2">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Système Informatique (WMS) & Audit Trail
+                                </h3>
+                                <p class="text-xs text-slate-600">Tout logiciel de gestion de stock doit être validé selon les BPDG et comporter une traçabilité inviolable :</p>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
+                                        <strong class="block text-emerald-900 mb-0.5">Audit Trail Automatisé :</strong>
+                                        Enregistrement automatique de toute création, modification ou suppression avec nom de l'utilisateur, date, heure et motif.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+                                        <strong class="block text-slate-900 mb-0.5">Accès Sécurisés Individuels :</strong>
+                                        Mots de passe uniques et personnels. <strong class="text-rose-700">Interdiction absolue de partager des identifiants</strong> de session.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+                                        <strong class="block text-slate-900 mb-0.5">Sauvegardes Périodiques Déportées :</strong>
+                                        Sauvegardes informatiques quotidiennes chiffrées sur serveur sécurisé distant avec test de restauration semestriel.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 5/13 • Mapping Thermique & Audit Trail WMS</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 12) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 6 • Bonnes Pratiques de Stockage</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Règles de Stockage, Règle d'Or FEFO & Code Couleur des Statuts</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
+                                Art. 9 Cahier des charges • FEFO Légal
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-5 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="boxes" class="w-4 h-4 text-hydra-600"></i> Les 3 Règles Physiques Immuables
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-950">
+                                        <strong class="block text-rose-900 mb-0.5">1. Zéro Carton au Sol :</strong>
+                                        Tout produit doit reposer sur des palettes à au moins <strong class="text-rose-950">10 cm du sol</strong>.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+                                        <strong class="block text-slate-900 mb-0.5">2. Distance des Murs :</strong>
+                                        Espace minimal de <strong class="text-slate-950">50 cm des parois</strong> pour assurer la circulation d'air et le passage d'inspection.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
+                                        <strong class="block text-emerald-900 mb-0.5">3. Règle FEFO (Art. 9) :</strong>
+                                        First Expired, First Out : priorité absolue au lot dont la date de péremption est la plus courte (prééminente sur le FIFO).
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-7 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-slate-900 flex items-center gap-2">
+                                    <i data-lucide="tag" class="w-4 h-4 text-emerald-600"></i> Le Code Couleur Officiel des 4 Statuts Produits
+                                </h3>
+                                <p class="text-xs text-slate-600">Double verrouillage : étiquette physique visible apposée sur la palette + statut informatique bloquant dans le WMS :</p>
+                                <div class="grid sm:grid-cols-2 gap-2.5 text-xs">
+                                    <div class="p-3 rounded-xl bg-sky-50 border border-sky-300">
+                                        <span class="px-2 py-0.5 rounded font-bold text-[10px] bg-sky-600 text-white uppercase inline-block mb-1">BLEU : REÇU</span>
+                                        <p class="text-[11px] text-sky-950">Déchargé au quai, en cours de contrôle documentaire et d'intégrité initiale.</p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-amber-50 border border-amber-300">
+                                        <span class="px-2 py-0.5 rounded font-bold text-[10px] bg-amber-600 text-white uppercase inline-block mb-1">JAUNE : QUARANTAINE</span>
+                                        <p class="text-[11px] text-amber-950">Bloqué à la vente. En attente de libération par le Pharmacien DT Dr. Asma KETTOU.</p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-300">
+                                        <span class="px-2 py-0.5 rounded font-bold text-[10px] bg-emerald-600 text-white uppercase inline-block mb-1">VERT : ACCEPTÉ / LIBÉRÉ</span>
+                                        <p class="text-[11px] text-emerald-950">Conforme à l'AMM, libéré pour le picking et la livraison aux clients officinaux.</p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-rose-50 border border-rose-300">
+                                        <span class="px-2 py-0.5 rounded font-bold text-[10px] bg-rose-600 text-white uppercase inline-block mb-1">ROUGE : REJETÉ / REFUSÉ</span>
+                                        <p class="text-[11px] text-rose-950">Non-conforme, périmé, endommagé ou falsifié. Isolé en zone fermée avant destruction.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 6/13 • Stockage, FEFO & Statuts Produits</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+} else if (id === 13) {
                 return `
                 <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
                     <div>
@@ -912,7 +1590,591 @@
                     </div>
                 </div>
                 `;
-            } else if (id === 23) {
+                        } else if (id === 14) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 7 • Documentation (Art. 27–28 & Chapitre 6)</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Le Système Documentaire Pharmaceutique & Principes ALCOA+</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-hydra-50 text-hydra-800 border border-hydra-200 text-xs font-bold">
+                                4 Niveaux • Principes ALCOA+
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="layers" class="w-4 h-4 text-hydra-600"></i> La Pyramide Documentaire à 4 Niveaux
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-hydra-50 border border-hydra-200 text-hydra-950">
+                                        <strong class="block text-hydra-900">Niveau 1 : Manuel Qualité (MQ)</strong>
+                                        Politique générale, engagements de la direction et cartographie des macro-processus.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-950">
+                                        <strong class="block text-sky-900">Niveau 2 : Procédures Opératoires Standard (SOP)</strong>
+                                        Qui fait quoi, comment et quand pour chaque opération critique (réception, stockage, froid).
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+                                        <strong class="block text-slate-900">Niveau 3 : Instructions de Travail (IT) & Fiches de Poste</strong>
+                                        Détail technique d'exécution pas-à-pas sur chaque poste de travail.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
+                                        <strong class="block text-emerald-900">Niveau 4 : Enregistrements, Registres & Formulaires</strong>
+                                        Preuves tangibles opposables : relevés thermiques, bons de livraison, fiches de déviation.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-slate-900 flex items-center gap-2">
+                                    <i data-lucide="check-square" class="w-4 h-4 text-emerald-600"></i> Les Principes ALCOA+ d'Intégrité des Données
+                                </h3>
+                                <div class="grid sm:grid-cols-2 gap-2 text-xs">
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">A - Attribuable</strong>On sait exactement qui a écrit l'information.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">L - Lisible</strong>Écriture claire, indélébile au stylo à bille bleu.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">C - Contemporain</strong>Noté en temps réel au moment de l'action.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">O - Original</strong>Document source initial, jamais une recopie.</div>
+                                    <div class="p-2 rounded-lg bg-slate-50 border border-slate-200"><strong class="text-slate-900 block text-[11px]">A - Exact (Accurate)</strong>Données vérifiées et conformes à la réalité.</div>
+                                    <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-200"><strong class="text-emerald-950 block text-[11px]">+ Complet & Durable</strong>Traçable pendant toute la durée légale (5 ans).</div>
+                                </div>
+                                <p class="text-[11px] text-slate-500 italic">Toute procédure doit être validée et approuvée par écrit par le Pharmacien DT Dr. Asma KETTOU avant diffusion.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 7/13 • Système Documentaire & ALCOA+</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 15) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 7 • Correction d'Écriture & Archivage</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Correction d'Erreur d'Écriture & Archivage Légal (5 Ans)</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 text-xs font-bold">
+                                Zéro Blanco • Archivage 5 Ans Min.
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <!-- Facsimile Correction Conforme vs Non-Conforme -->
+                            <div class="lg:col-span-7 glass-card p-4 rounded-2xl border-2 border-slate-300 space-y-3">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                                    <span class="text-xs font-black uppercase text-slate-900 flex items-center gap-2">
+                                        <i data-lucide="edit-3" class="w-4 h-4 text-hydra-600"></i> Règle d'Or de Correction d'Écriture BPDG
+                                    </span>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">Interdiction Blanco</span>
+                                </div>
+
+                                <!-- Mauvaise Pratique -->
+                                <div class="p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs space-y-1">
+                                    <span class="font-bold text-rose-800 flex items-center gap-1.5 uppercase text-[11px]">
+                                        <i data-lucide="x-circle" class="w-3.5 h-3.5"></i> Pratique Strictement Interdite (Sanction Inspection) :
+                                    </span>
+                                    <p class="text-slate-700">Utilisation de correcteur blanc (blanco), grattage, rature opaque ou collage d'étiquette pour masquer l'erreur.</p>
+                                    <div class="p-2 bg-white rounded border border-rose-300 font-mono text-slate-400">
+                                        Lot : [BLANCO OPAQUE MASQUANT LA VALEUR] → Écriture par-dessus sans motif ni date.
+                                    </div>
+                                </div>
+
+                                <!-- Bonne Pratique Conforme -->
+                                <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs space-y-1.5">
+                                    <span class="font-bold text-emerald-800 flex items-center gap-1.5 uppercase text-[11px]">
+                                        <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Pratique Conforme aux BPDG (Guide ANPP Chap. 6) :
+                                    </span>
+                                    <p class="text-slate-800">Biffé d'un <strong>seul trait fin horizontal</strong> laissant la mention originale parfaitement lisible, avec mention de la nouvelle valeur, signature/initiales, date du jour et motif.</p>
+                                    <div class="p-2.5 bg-white rounded-lg border border-emerald-400 font-mono text-xs">
+                                        Lot : <span class="line-through text-rose-600 font-bold">AB123</span> <strong class="text-emerald-800 bg-emerald-100 px-1 rounded">AC124</strong>
+                                        <span class="text-slate-600 text-[11px] font-sans ml-2">— <em>(Visa Pharmacien DT Dr. Asma KETTOU, 15/10/2026 - Motif : Erreur de frappe)</em></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Archivage Légal -->
+                            <div class="lg:col-span-5 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="archive" class="w-4 h-4 text-hydra-600"></i> Durée d'Archivage Légal Obligatoire
+                                </h3>
+                                <div class="p-3 bg-hydra-50 rounded-xl border border-hydra-200 text-center">
+                                    <div class="text-3xl font-black text-hydra-800 font-mono">≥ 5 ANS</div>
+                                    <p class="text-xs text-hydra-950 font-bold mt-1">Archivage Minimum des Documents Techniques (Art. 28)</p>
+                                </div>
+                                <ul class="text-xs text-slate-700 space-y-1.5">
+                                    <li>• Bons de livraison & lettres de voiture émargées.</li>
+                                    <li>• Fiches de contrôle thermique et enregistrements 24/7.</li>
+                                    <li>• Registres d'entrées et sorties des psychotropes (art. 19-379).</li>
+                                    <li>• Rapports d'auto-inspection et fiches de déviations CAPA.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 7/13 • Correction d'Écriture & Archivage 5 Ans</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 16) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 8 • Qualification & Réception</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Qualification Fournisseurs/Clients & Les 5 Étapes de Réception</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-hydra-50 text-hydra-800 border border-hydra-200 text-xs font-bold">
+                                Agrément MIP Obligatoire • 5 Étapes
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-5 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="user-check" class="w-4 h-4 text-hydra-600"></i> Qualification Préalable des Tiers
+                                </h3>
+                                <p class="text-xs text-slate-600">Il est strictement interdit de commercer avec un acteur non préalablement qualifié et validé par le Pharmacien DT :</p>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-950">
+                                        <strong class="block text-sky-900">Fournisseurs Autorisés :</strong>
+                                        Vérification de la décision d'agrément de fabrication ou d'importation délivrée par le MIP + décision d'enregistrement / AMM du produit.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
+                                        <strong class="block text-emerald-900">Clients Autorisés :</strong>
+                                        Vérification de l'arrêté d'ouverture de l'officine de pharmacie ou de l'agrément de l'établissement de santé, avec tenue du registre à jour.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-7 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-slate-900 flex items-center gap-2">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i> Les 5 Étapes Systématiques de Réception
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2.5">
+                                        <span class="w-5 h-5 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">1</span>
+                                        <span><strong>Contrôle Documentaire :</strong> Concordance bon de livraison, lettre de voiture et certificat d'analyse.</span>
+                                    </div>
+                                    <div class="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2.5">
+                                        <span class="w-5 h-5 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">2</span>
+                                        <span><strong>Contrôle Température :</strong> Relevé immédiat des thermo-enregistreurs embarqués (&lt; 15 min pour le froid).</span>
+                                    </div>
+                                    <div class="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2.5">
+                                        <span class="w-5 h-5 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">3</span>
+                                        <span><strong>Examen Visuel Intégrité :</strong> Vérification de l'absence de mouille, déchirure, écrasement ou scellés brisés.</span>
+                                    </div>
+                                    <div class="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2.5">
+                                        <span class="w-5 h-5 rounded-full bg-hydra-100 text-hydra-800 font-bold flex items-center justify-center shrink-0">4</span>
+                                        <span><strong>Comptage & Réconciliation :</strong> Décompte physique des colis, lots et dates de péremption.</span>
+                                    </div>
+                                    <div class="p-2 rounded-xl bg-amber-50 border border-amber-300 flex items-center gap-2.5">
+                                        <span class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center shrink-0">5</span>
+                                        <span><strong>Mise en Quarantaine Immédiate :</strong> Affectation automatique du statut Quarantaine (jaune) jusqu'à libération par le PDT.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 8/13 • Qualification & Réception en Entrepôt</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 17) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 9 • Préparation & Expédition (Art. 20–21)</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Préparation (Picking), Colisage Sécurisé & Expédition contre Décharge</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
+                                Art. 20-21 • Zéro Erreur Picking
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="package-check" class="w-4 h-4 text-hydra-600"></i> Protocole de Picking & Double Contrôle
+                                </h3>
+                                <div class="space-y-2 text-xs text-slate-700">
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Picking Assisté par Code-Barres / WMS :</strong>
+                                        Prélèvement guidé garantissant la priorité absolue du lot FEFO (date de péremption la plus proche).
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-200">
+                                        <strong class="text-sky-900 block mb-0.5">Double Contrôle Aveugle Avant Fermeture :</strong>
+                                        Vérification croisée par un second opérateur : désignation, dosage, forme, quantité exacte et numéro de lot.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                                        <strong class="text-emerald-900 block mb-0.5">Colisage Antichoc & Scellés Numérotés :</strong>
+                                        Utilisation de calage adapté, scellement par ruban adhésif de sécurité ou liens numérotés inviolables.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-slate-900 flex items-center gap-2">
+                                    <i data-lucide="file-text" class="w-4 h-4 text-emerald-600"></i> Mentions Légales du Bon de Livraison (Art. 20)
+                                </h3>
+                                <p class="text-xs text-slate-600">Le bon de livraison accompagnant obligatoirement chaque commande doit mentionner :</p>
+                                <ul class="text-xs text-slate-700 space-y-1.5">
+                                    <li>• Nom, raison sociale, adresse et agrément de SPA ABC MED.</li>
+                                    <li>• Nom, adresse et numéro d'autorisation de l'officine destinataire.</li>
+                                    <li>• Date et heure précise d'expédition.</li>
+                                    <li>• Désignation commerciale, forme pharmaceutique et dosage de chaque produit.</li>
+                                    <li>• <strong class="text-hydra-900">Numéro de lot de fabrication</strong> et <strong>date de péremption</strong> pour chaque ligne.</li>
+                                    <li>• Quantités livrées et conditions particulières de conservation (ex: 2-8°C).</li>
+                                    <li class="p-2 rounded-lg bg-emerald-50 text-emerald-900 font-bold border border-emerald-200">
+                                        Signature, date et cachet obligatoires du récepteur lors de la livraison effective.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 9/13 • Picking & Expédition contre Décharge</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 18) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 10 • Transport & Logistique (Art. 13–14)</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Transport sous Température Dirigée & Gestion des Urgences</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-sky-50 text-sky-800 border border-sky-200 text-xs font-bold">
+                                Traçabilité Thermique Bout-en-Bout
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="truck" class="w-4 h-4 text-hydra-600"></i> Qualification des Véhicules & Caisses Isothermes
+                                </h3>
+                                <div class="space-y-2 text-xs text-slate-700">
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Qualification Saisonnière Été/Hiver :</strong>
+                                        Les véhicules frigorifiques et caisses isothermes doivent être qualifiés sur les profils de température réels algériens (jusqu'à +48°C l'été).
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Enregistreurs Autonomes Calibrés :</strong>
+                                        Sondes et thermo-boutons avec étalonnage annuel traçable aux étalons nationaux.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Séparation Physique des Flux :</strong>
+                                        Interdiction formelle de transporter des produits pharmaceutiques avec des substances toxiques, aliments ou produits chimiques.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-amber-800 flex items-center gap-2">
+                                    <i data-lucide="alert-octagon" class="w-4 h-4 text-amber-600"></i> Plan de Continuité d'Activité (PCA) Transport
+                                    </h3>
+                                <p class="text-xs text-slate-600">En cas d'accident, de panne de véhicule ou de défaillance du groupe frigo en cours de tournée :</p>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2 rounded-xl bg-amber-50 border border-amber-200">
+                                        <strong>1. Alerte Immédiate :</strong> Le chauffeur contacte le régulateur logistique et le Pharmacien DT Dr. Asma KETTOU.
+                                    </div>
+                                    <div class="p-2 rounded-xl bg-amber-50 border border-amber-200">
+                                        <strong>2. Maintien Portes Closes :</strong> Conserver l'inertie thermique de la caisse isotherme fermée.
+                                    </div>
+                                    <div class="p-2 rounded-xl bg-amber-50 border border-amber-200">
+                                        <strong>3. Véhicule de Remplacement d'Urgence :</strong> Déploiement d'un véhicule de secours qualifié sous 1 heure.
+                                    </div>
+                                    <div class="p-2 rounded-xl bg-emerald-50 border border-emerald-200">
+                                        <strong>4. Relevé de Température & Expertise :</strong> Lecture des sondes à l'arrivée pour décision d'acceptation ou quarantaine.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 10/13 • Transport & PCA d'Urgence</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 19) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 11 • Réclamations, Retours & Rappels</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Réclamations Clients, Retours (Chap. 8) & Rappels de Lots</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">
+                                Délai Interne ABC MED (7 Jours) • Mock Recall Annuel
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <!-- Retours Clients -->
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-amber-800 flex items-center gap-2">
+                                    <i data-lucide="rotate-ccw" class="w-4 h-4 text-amber-600"></i> Conditions Strictes de Réintégration des Retours
+                                </h3>
+                                <p class="text-xs text-slate-600">Règle fondamentale BPDG : Tout retour est considéré non conforme jusqu'à preuve du contraire.</p>
+                                <ul class="space-y-2 text-xs text-slate-700">
+                                    <li class="p-2 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong>a) Emballage d'origine intact :</strong> boîtes scellées, sans vignette déchirée ni altération.
+                                    </li>
+                                    <li class="p-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 font-semibold">
+                                        <strong>b) Délai acceptable défini en interne :</strong> fixé par la procédure de l'établissement (ex. <strong>7 jours</strong> chez ABC MED, la réglementation algérienne ne fixant aucun délai rigide de 10 jours).
+                                    </li>
+                                    <li class="p-2 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong>c) Chaîne du froid (2-8°C) :</strong> Preuve documentaire continue incontestable de maintien à 2-8°C.
+                                    </li>
+                                    <li class="p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 font-bold">
+                                        <strong>d) Décision écrite exclusive du Pharmacien DT :</strong> Seule Dr. Asma KETTOU peut signer la réintégration au stock vendable.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Rappels de Lots & Mock Recall -->
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-rose-800 flex items-center gap-2">
+                                    <i data-lucide="megaphone" class="w-4 h-4 text-rose-600"></i> Rappels de Lots & Test Annuel (Mock Recall)
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-200">
+                                        <span class="font-extrabold text-rose-900 block text-xs">3 Classes d'Urgence MIP :</span>
+                                        <ul class="mt-1 space-y-1 text-[11px] text-slate-700">
+                                            <li>• <strong>Classe 1 (Danger vital immédiat) :</strong> Retrait total en &lt; 24 heures.</li>
+                                            <li>• <strong>Classe 2 (Risque temporaire ou réversible) :</strong> Retrait sous 48 heures.</li>
+                                            <li>• <strong>Classe 3 (Défaut mineur emballage/étiquetage) :</strong> Retrait sous 5 jours.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-200">
+                                        <span class="font-extrabold text-sky-900 block text-xs">Exercice de Rappel Fictif (Mock Recall) :</span>
+                                        Obligation légale de simuler un rappel complet au moins <strong class="text-sky-950">une fois par an</strong> pour tester la réactivité du système de traçabilité et réconcilier 100% des boîtes distribuées.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 11/13 • Retours Clients, Réclamations & Rappels</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 20) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 12 • Lutte Contre la Falsification</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Médicaments Falsifiés : Détection, Alerte & Destruction Légale</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 text-xs font-bold">
+                                Tolérance Zéro • Alerte ANPP &lt; 24h
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <!-- Facsimile Comparatif Coartem Vrai vs Falsifié -->
+                            <div class="lg:col-span-7 glass-card p-4 rounded-2xl border-2 border-slate-300 space-y-3">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                                    <span class="text-xs font-black uppercase text-slate-900 flex items-center gap-2">
+                                        <i data-lucide="eye" class="w-4 h-4 text-hydra-600"></i> Cas Réel Terrain : Faux Coartem vs Vrai Médicament
+                                    </span>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">Alerte OMS / ANPP</span>
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                                    <div class="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-950 space-y-1.5">
+                                        <span class="font-black text-rose-800 uppercase block text-xs">✖ Falsifié / Contrefait</span>
+                                        <p class="text-[11px] text-slate-700">• Fautes d'orthographe sur le conditionnement secondaire.</p>
+                                        <p class="text-[11px] text-slate-700">• Absence d'hologramme de sécurité ou hologramme terne non réactif.</p>
+                                        <p class="text-[11px] text-slate-700">• Comprimés friables, couleur hétérogène, odeur inhabituelle.</p>
+                                        <p class="text-[11px] text-slate-700">• Gravure floue du numéro de lot ou date expirée maquillée.</p>
+                                    </div>
+
+                                    <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 space-y-1.5">
+                                        <span class="font-black text-emerald-800 uppercase block text-xs">✔ Authentique / Conforme</span>
+                                        <p class="text-[11px] text-slate-700">• Impression nette haute définition et typographie conforme.</p>
+                                        <p class="text-[11px] text-slate-700">• Hologramme de sécurité officiel avec reflets iridescents conformes.</p>
+                                        <p class="text-[11px] text-slate-700">• Comprimés réguliers et sécables sans effritement.</p>
+                                        <p class="text-[11px] text-slate-700">• Mention obligatoire en langue arabe et vignette tarifaire officielle.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Procédure d'Alerte -->
+                            <div class="lg:col-span-5 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-rose-800 flex items-center gap-2">
+                                    <i data-lucide="shield-alert" class="w-4 h-4 text-rose-600"></i> Protocole d'Alerte Réglementaire
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-200">
+                                        <strong class="block text-rose-900 mb-0.5">1. Isolement Immédiat sous Clé :</strong>
+                                        Transfert dans la zone sécurisée des produits suspects avec étiquette "Ne pas distribuer".
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="block text-slate-900 mb-0.5">2. Notification ANPP &lt; 24h :</strong>
+                                        Déclaration formelle transmise par le Pharmacien DT Dr. Asma KETTOU à l'ANPP et au MIP.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="block text-slate-900 mb-0.5">3. Destruction Légale :</strong>
+                                        Destruction uniquement en présence d'un huissier de justice et procès-verbal officiel.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 12/13 • Médicaments Falsifiés & Détection</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 21) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 12 • Dispositifs Médicaux & Psychotropes</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Dispositifs Médicaux (DM) & Gestion des Psychotropes / Stupéfiants</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 text-xs font-bold">
+                                Responsabilité Exclusive du Pharmacien DT
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="activity" class="w-4 h-4 text-hydra-600"></i> Exigences Relatives aux Dispositifs Médicaux (DM)
+                                </h3>
+                                <ul class="space-y-2 text-xs text-slate-700">
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Superficie Dédiée :</strong>
+                                        Zone de stockage physiquement délimitée d'au moins <strong class="text-hydra-800">90 m²</strong> selon l'Article 6 du Cahier des charges.
+                                    </li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Décision d'Enregistrement DM ANPP :</strong>
+                                        Aucun DM ne peut être commercialisé sans homologation / décision d'enregistrement délivrée par l'ANPP.
+                                    </li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Matériovigilance :</strong>
+                                        Système d'enregistrement et de notification immédiate de tout incident ou défaillance matérielle.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-rose-800 flex items-center gap-2">
+                                    <i data-lucide="lock" class="w-4 h-4 text-rose-600"></i> Régime Spécial des Psychotropes (Décret 19-379)
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-200">
+                                        <strong class="block text-rose-900 mb-0.5">Armoire Blindée Scellée au Sol :</strong>
+                                        Stockage obligatoire dans un local ou coffre blindé sécurisé, fermé à double tour, sous vidéosurveillance.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                                        <strong class="block text-emerald-950 mb-0.5">Clé sous la Garde Exclusive du PDT :</strong>
+                                        La clé physique est détenue personnellement et exclusivement par le Pharmacien Directeur Technique <strong class="text-emerald-900">Dr. Asma KETTOU</strong> (aucun double laissé aux opérateurs).
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="block text-slate-900 mb-0.5">Registre Coté et Paraphé :</strong>
+                                        Enregistrement d'entrée et de sortie sans rature, visé par le tribunal ou la direction de la santé, avec bilan trimestriel officiel au MIP.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 12/13 • Dispositifs Médicaux & Psychotropes</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+            } else if (id === 22) {
+                return `
+                <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-hydra-600">Module 13 • Sous-Traitance & Audits</span>
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Activités Externalisées, Auto-Inspection & Inspections ANPP/MIP</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-xl bg-hydra-50 text-hydra-800 border border-hydra-200 text-xs font-bold">
+                                Audit Interne Semestriel • Conformité Légale
+                            </span>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-4 mb-4">
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-hydra-800 flex items-center gap-2">
+                                    <i data-lucide="handshake" class="w-4 h-4 text-hydra-600"></i> Sous-Traitance Réglementée (Art. 26 & Chapitre 18)
+                                </h3>
+                                <p class="text-xs text-slate-600">Toute activité externalisée (transport, sécurité, pest control, maintenance informatique) doit faire l'objet d'un contrat écrit formel :</p>
+                                <ul class="space-y-2 text-xs text-slate-700">
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Cahier des Charges Technique Précis :</strong>
+                                        Définition explicite des exigences BPDG applicables au prestataire (ex: transport sous température dirigée).
+                                    </li>
+                                    <li class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-slate-900 block mb-0.5">Droit d'Audit Réservé :</strong>
+                                        Clause contractuelle autorisant le Pharmacien DT de SPA ABC MED à auditer à tout moment les installations du prestataire.
+                                    </li>
+                                    <li class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                                        <strong class="text-emerald-950 block mb-0.5">Validation Obligatoire par le PDT :</strong>
+                                        Aucun contrat de sous-traitance n'est valide sans la signature et l'approbation préalable de Dr. Asma KETTOU.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="lg:col-span-6 glass-card p-4 rounded-2xl space-y-3">
+                                <h3 class="text-xs font-black uppercase text-emerald-800 flex items-center gap-2">
+                                    <i data-lucide="clipboard-check" class="w-4 h-4 text-emerald-600"></i> Auto-Inspections & Inspections Officielles
+                                </h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-200">
+                                        <strong class="block text-sky-900 mb-0.5">Auto-Inspection Semestrielle :</strong>
+                                        Audit interne rigoureux réalisé au moins deux fois par an par du personnel qualifié indépendant, suivi d'un plan d'actions correctives.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="block text-slate-900 mb-0.5">Accueil des Inspecteurs ANPP / MIP :</strong>
+                                        Le Pharmacien Directeur Technique est l'interlocuteur légal officiel. Présentation immédiate des SOP, registres et attestations d'habilitation.
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-200">
+                                        <strong class="block text-amber-900 mb-0.5">Transparence & Coopération :</strong>
+                                        Interdiction formelle d'entraver le contrôle officiel, d'altérer des documents ou de dissimuler des stocks.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <span>Module 13/13 • Sous-Traitance & Auto-Inspections</span>
+                        <span>SPA ABC MED — Groupe Hydrapharm</span>
+                    </div>
+                </div>
+                `;
+} else if (id === 23) {
                 return `
                 <div class="w-full h-full flex flex-col justify-between overflow-y-auto custom-scroll p-4 sm:p-8 animate-in fade-in duration-200">
                     <div>
@@ -980,10 +2242,11 @@
                                         <i data-lucide="chevron-down" class="w-4 h-4"></i>
                                     </button>
                                     <div id="case-3" class="hidden mt-2 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 space-y-1">
-                                        <p>1. <strong>Refus a priori</strong> de réintégration directe.</p>
-                                        <p>2. Quarantaine violette physique et WMS.</p>
-                                        <p>3. Exiger les 6 preuves de maintien continu +2°C/+8°C.</p>
-                                        <p>4. Seul le PDT peut statuer par écrit.</p>
+                                        <p>1. <strong>Refus a priori</strong> de réintégration directe au stock vendable.</p>
+                                        <p>2. Quarantaine physique et blocage informatique immédiat.</p>
+                                        <p>3. Vérification du respect du <strong>délai interne</strong> (ex. 7 jours chez ABC MED — aucun délai légal rigide de 10 jours n'est imposé par la réglementation algérienne).</p>
+                                        <p>4. Exiger les 6 preuves documentaires de maintien continu +2°C/+8°C de l'officine.</p>
+                                        <p>5. Décision écrite exclusive du Pharmacien Directeur Technique (Dr. Asma KETTOU).</p>
                                     </div>
                                 </div>
                             </div>
@@ -1113,9 +2376,17 @@
                                 </div>
                             </div>
                             <div class="p-5 rounded-2xl bg-gradient-to-br from-hydra-800 via-hydra-700 to-pharma-700 text-white shadow-lg flex flex-col justify-center space-y-2">
-                                <p class="text-[11px] font-bold uppercase tracking-wider text-sky-200">Formateur & Direction Qualité</p>
-                                <p class="text-xl font-black text-white">Boussad TAMAZIRT</p>
-                                <p class="text-emerald-300 font-semibold text-xs">Responsable Qualité — SPA ABC MED (Groupe Hydrapharm)</p>
+                                <p class="text-[11px] font-bold uppercase tracking-wider text-sky-200">Direction Technique & Management Qualité</p>
+                                <div class="space-y-1.5">
+                                    <div>
+                                        <p class="text-base font-black text-white">Dr. Asma KETTOU</p>
+                                        <p class="text-emerald-300 font-semibold text-xs">Pharmacien Directeur Technique (DT) — SPA ABC MED</p>
+                                    </div>
+                                    <div class="pt-1.5 border-t border-white/15">
+                                        <p class="text-base font-black text-white">Boussad TAMAZIRT</p>
+                                        <p class="text-sky-200 font-semibold text-xs">Responsable Qualité (RQ) — Formateur</p>
+                                    </div>
+                                </div>
                                 <p class="text-slate-200 text-xs pt-1 font-mono">Contact : abcmed.technique@groupehydrapharm.com</p>
                             </div>
                         </div>
